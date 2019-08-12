@@ -16,6 +16,24 @@
    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
     <!-- TABLE STYLES-->
     <link href="assets/js/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
+    <!-- FIREBASE-->
+    <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-auth.js"></script>
+    <script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyCSZkGy0MnhJ6RdEdaCjObelHariS-xeI4",
+        authDomain: "easyappalto-5d310.firebaseapp.com",
+        databaseURL: "https://easyappalto-5d310.firebaseio.com",
+        projectId: "easyappalto-5d310",
+        storageBucket: "",
+        messagingSenderId: "787583540199",
+        appId: "1:787583540199:web:f276d10bf841e1ff"
+    };
+    firebase.initializeApp(config);
+    </script>
+    <!--My JS file-->
+    <script src="login.js"></script>
 </head>
 <body>
     <div id="wrapper">
@@ -47,13 +65,13 @@ font-size: 16px;">
                                       
                                         <div class="form-group">
                                             <label>Username</label>
-                                            <input class="form-control" placeholder="utente@mail.com" />
+                                            <input class="form-control" placeholder="utente@mail.com" id="email"/>
                                         </div>
                                         <div class="form-group">
                                             <label>Password</label>
-                                            <input type="password" class="form-control"/>
+                                            <input type="password" class="form-control" required id="password"/>
                                         </div>
-                                        <button type="submit" class="btn btn-default">Conferma</button>
+                                        <button type="submit" class="btn btn-default" onclick="login()">Conferma</button>
                                         <button type="reset" class="btn btn-primary">Annulla</button>
 
                                     </form>
