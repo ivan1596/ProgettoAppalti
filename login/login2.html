@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Login</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--My JS file-->
+    <script src="login.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="login.css">
+  
+</head>
+<body>
+    <div class="form">
+        <div class="imgcontainer">
+          <img src="../assets/img/Logo_Univpm.svg.png" alt="Avatar" class="avatar"/>
+        </div>
+      
+        <div class="container">
+          <label><b>E-Mail</b></label>
+          <input type="text" placeholder="Inserisci Email" name="uname" required id="email">
+      
+          <label><b>Password</b></label>
+          <input type="password" placeholder="Inserisci Password" name="psw" required id="password">
+      
+          <button onclick="login()">Login</button>
+          
+        </div>
+      
+    </div>
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-app.js"></script>
+
+<!-- Add Firebase products that you want to use -->
+<script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-auth.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyCSZkGy0MnhJ6RdEdaCjObelHariS-xeI4",
+    authDomain: "easyappalto-5d310.firebaseapp.com",
+    databaseURL: "https://easyappalto-5d310.firebaseio.com",
+    projectId: "easyappalto-5d310",
+    storageBucket: "",
+    messagingSenderId: "787583540199",
+    appId: "1:787583540199:web:f276d10bf841e1ff"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
+</body>
+</html>
