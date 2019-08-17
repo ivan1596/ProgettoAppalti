@@ -10,9 +10,9 @@ if(utente == null){
 if (typeof web3 !== 'undefined') {
   web3 = new Web3(web3.currentProvider);
 } else {
-  // set the provider you want from Web3.providers
+  // settare il provider per Web3.providers
   web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
-}
+} 
 
 const contract = web3.eth.contract(contractAbi);
 const contractInstance = contract.at(contractAddress);
@@ -25,4 +25,4 @@ const contractInstance = contract.at(contractAddress);
 
 contractInstance.nomeMetodo.sendTransaction( transactionObject, (error, result) => { 
     // effettuare le operazioni per gestire gli errori e i risultati 
-});
+}); 
