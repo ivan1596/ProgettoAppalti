@@ -85,16 +85,25 @@ font-size: 16px;"> <a href="#" class="btn btn-danger square-btn-adjust">Il mio p
                                         <tbody>
                                             
                                             <tr class="gradeA">
-                                                <td><a href="#1" data-toggle="modal">2018/10/20</a></td>
+                                                <td><a href="#1" data-toggle="modal">12/10/2018</a></td>
                                                 <div class="modal fade" id="1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                                     <div class="modal-dialog">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
                                                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                                <h4 class="modal-title" id="myModalLabel">2018/10/20</h4>
+                                                                <h4 class="modal-title" id="myModalLabel">12/10/2018</h4>
                                                             </div>
                                                             <div class="modal-body">
-                                                            Qui ci va l'annotazione piena </div>
+                                                                <p><b>Meteo</b></p><br>Sole 13,5°C, Precip: Assenti
+                                                                <hr>
+                                                                <p><b>Annotazioni generali e speciali sull'andamento di esecuzione
+                                                                dei lavori, avvenimenti straordinari e tempo impiegato</b></p><br>
+                                                                Verifica delle generalità degli operai presenti in cantiere.
+                                                                Scavo di fondazione e protezione degli scavi con opere provvisionali.
+                                                                <hr>
+                                                                <a>immagine.jpg</a><br>
+                                                                <a>immagine2.jpg</a>
+                                                            </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>   
                                                             </div>
@@ -108,13 +117,13 @@ font-size: 16px;"> <a href="#" class="btn btn-danger square-btn-adjust">Il mio p
                                                 
                                             </tr>
                                             <tr class="gradeU">
-                                                <td><a href="#2" data-toggle="modal">2018/12/20</a></td>
+                                                <td><a href="#2" data-toggle="modal">20/10/2018</a></td>
                                                 <div class="modal fade" id="2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                                     <div class="modal-dialog">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
                                                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                                <h4 class="modal-title" id="myModalLabel">2018/12/20</h4>
+                                                                <h4 class="modal-title" id="myModalLabel">20/10/2018</h4>
                                                             </div>
                                                             <div class="modal-body">
                                                             Qui ci va l'annotazione piena </div>
@@ -143,10 +152,28 @@ font-size: 16px;"> <a href="#" class="btn btn-danger square-btn-adjust">Il mio p
                                             <h4 class="modal-title" id="myModalLabel">Nuova annotazione</h4>
                                         </div>
                                         <div class="modal-body">
-                                        Qui ci va la form </div>
+                                                <form role="form">
+                                                        <div class="form-group">
+                                                            <label>Data</label><br>
+                                                            <input type="date"">
+                                                        </div>
+                                                        <div class="form-group">
+                                                                <label>Meteo</label>
+                                                                <input class="form-control">
+                                                            </div>
+                                                        <div class="form-group">
+                                                            <label>Annotazioni generali e speciali sull'andamento di esecuzione
+                                                                    dei lavori, avvenimenti straordinari e tempo impiegato</label>
+                                                            <textarea class="form-control" rows="3"></textarea>
+                                                        </div>
+                                                        <div class="form-group">
+                                                                <label>Immagine</label>
+                                                                <input type="file" multiple>
+                                                            </div>
+                                                   </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-default" data-dismiss="modal">Annulla</button>
-                                            <button type="button" class="btn btn-primary">Conferma</button>     
+                                            <button type="button" class="btn btn-primary">Conferma</button></form>   
                             </div>
                         </div>
                     </div>
