@@ -21,6 +21,13 @@
     <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-auth.js"></script>
     <!-- WEB3JS-->
     <script type="text/javascript" src="../web3.js-0.20.7/dist/web3.min.js"></script>
+    <script type="text/javascript">  if(typeof window.web3 !== "undefined" && typeof window.web3.currentProvider !== "undefined") {
+        var web3 = new Web3(window.web3.currentProvider);
+      } else {
+        var web3 = new Web3();
+      }
+    </script>
+    <script src="libretto.js"></script>
 </head>
 <body>
     <div id="wrapper">
