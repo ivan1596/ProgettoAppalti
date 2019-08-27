@@ -1,36 +1,81 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <title>Login</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!--My JS file-->
+      <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UNIVPM</title>
+	<!-- BOOTSTRAP STYLES-->
+    <link href="../assets/css/bootstrap.css" rel="stylesheet" />
+     <!-- FONTAWESOME STYLES-->
+    <link href="../assets/css/font-awesome.css" rel="stylesheet" />
+     <!-- MORRIS CHART STYLES
+    <link href="../assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" /> -->
+    <!-- CUSTOM STYLES-->
+    <link href="../assets/css/custom.css" rel="stylesheet" />
+     <!-- GOOGLE FONTS-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <!-- TABLE STYLES-->
+    <link href="../assets/js/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
+  <!--My JS file-->
     <script src="login.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="login.css">
   
 </head>
 <body>
-    <div class="form">
-        <div class="imgcontainer">
-          <img src="../assets/img/Logo_Univpm.svg.png" alt="Avatar" class="avatar"/>
+    <div id="wrapper">
+        <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <a class="navbar-brand">UNIVPM</a> 
+            </div>
+  <div style="color: white;
+padding: 15px 50px 5px 50px;
+float: right;
+font-size: 16px;"> 
+    </nav>   
+            <!-- /. NAV TOP  -->
+                <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                    <img src="../assets/img/Logo_Università_Politecnica_delle_Marche.png" class="user-image img-responsive"/>
+            </div>
+            
+        </nav>  
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper" >
+            <div id="page-inner">
+                <div class="row">
+                    <div class="col-md-12">
+                      <h2> Login</h2>
+                    </div>
+                </div>
+      
+    <div id="form">
+                        
+        <div class="form-group">
+            <label>Username</label>
+            <input type="text" class="form-control" placeholder="utente@mail.com" name="uname" required id="email"/>
         </div>
-      
-        <div class="container">
-          <label><b>E-Mail</b></label>
-          <input type="text" placeholder="Inserisci Email" name="uname" required id="email">
-      
-          <label><b>Password</b></label>
-          <input type="password" placeholder="Inserisci Password" name="psw" required id="password">
-      
-          <button onclick="login()">Login</button>
-          
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" class="form-control" name="psw" required id="password"/>
         </div>
-      
-    </div>
+        <button type="submit" class="btn btn-default" onclick="login()">Conferma</button>
+        <button type="reset" class="btn btn-primary">Annulla</button>
 
+     </div>
+
+
+
+
+<!-- /. ROW  -->
+<hr/>
+         <!-- /. PAGE INNER  -->
+        </div>
+    <!-- /. PAGE WRAPPER  -->
+</div>
+<!-- /. WRAPPER  -->
+</div>
+<!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
 <!-- The core Firebase JS SDK is always required and must be listed first -->
 <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-app.js"></script>
 
@@ -51,5 +96,12 @@
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
 </script>
+<!-- JQUERY SCRIPTS -->
+<script src="../assets/js/jquery-1.10.2.js"></script>
+ <!-- BOOTSTRAP SCRIPTS -->
+<script src="../assets/js/bootstrap.min.js"></script>
+<!-- METISMENU SCRIPTS -->
+<script src="../assets/js/jquery.metisMenu.js"></script>
+
 </body>
 </html>
