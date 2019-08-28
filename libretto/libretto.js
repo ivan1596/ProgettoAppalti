@@ -285,9 +285,6 @@ const Abi = [
 web3js.eth.defaultAccount = '0xed9d02e382b34818e88B88a309c7fe71E65f419d'
 var myContract = new web3js.eth.Contract(Abi, '0xA501AfD7d6432718daF4458Cfae8590d88de818E', { gasPrice: '20000000000'});
 
-/*myContract.methods.newRecord(3,'ac','b','c',2,4).call({gas: 100000}, function(error, txHash){
-  console.log("error:"+error)
-  console.log(txHash);});*/
 
 /* myContract.methods.newRecord(8,'ac','db','cd',2,4).send({from:web3js.eth.defaultAccount,gas: 4500000,gasPrice:'0'}, function(error, transactionHash){
  console.log(transactionHash);

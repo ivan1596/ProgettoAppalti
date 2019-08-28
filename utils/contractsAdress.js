@@ -1,0 +1,1 @@
+const misureandregistroAdress = "0xA501AfD7d6432718daF4458Cfae8590d88de818E";
