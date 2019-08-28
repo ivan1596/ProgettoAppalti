@@ -6,293 +6,80 @@ if(utente == null){
 
 //Procedura per connettersi alla blockchain e chiamare i metodi del contratto
 //var Web3 = require('web3');
+var Abi = misureandregistroABI;
+var address = misureandregistroAdress;
+web3js.eth.defaultAccount = '0xed9d02e382b34818e88B88a309c7fe71E65f419d';
+var myContract = new web3js.eth.Contract(Abi, address, { gasPrice: '20000000000'});
 
-const Abi = [
-  {
-    "inputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "constructor"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "name": "sender",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "name": "key",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "name": "tariffa",
-        "type": "string"
-      },
-      {
-        "indexed": false,
-        "name": "data",
-        "type": "string"
-      },
-      {
-        "indexed": false,
-        "name": "descrizione",
-        "type": "string"
-      },
-      {
-        "indexed": false,
-        "name": "percentuale_completamento",
-        "type": "uint128"
-      },
-      {
-        "indexed": false,
-        "name": "prezzo_unitario",
-        "type": "uint128"
-      },
-      {
-        "indexed": false,
-        "name": "debito",
-        "type": "uint128"
-      }
-    ],
-    "name": "LogNewLDMRecord",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "name": "sender",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "name": "key",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "name": "tariffa",
-        "type": "string"
-      },
-      {
-        "indexed": false,
-        "name": "data",
-        "type": "string"
-      },
-      {
-        "indexed": false,
-        "name": "descrizione",
-        "type": "string"
-      },
-      {
-        "indexed": false,
-        "name": "percentuale_completamento",
-        "type": "uint128"
-      },
-      {
-        "indexed": false,
-        "name": "prezzo_unitario",
-        "type": "uint128"
-      },
-      {
-        "indexed": false,
-        "name": "debito",
-        "type": "uint128"
-      }
-    ],
-    "name": "LogUpdateRecord",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "name": "sender",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "name": "key",
-        "type": "uint256"
-      }
-    ],
-    "name": "LogRemRecord",
-    "type": "event"
-  },
-  {
-    "constant": false,
-    "inputs": [
-      {
-        "name": "key",
-        "type": "uint256"
-      },
-      {
-        "name": "tariffa",
-        "type": "string"
-      },
-      {
-        "name": "data",
-        "type": "string"
-      },
-      {
-        "name": "descrizione",
-        "type": "string"
-      },
-      {
-        "name": "prezzo_unitario",
-        "type": "uint128"
-      },
-      {
-        "name": "percentuale_completamento",
-        "type": "uint128"
-      }
-    ],
-    "name": "newRecord",
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "constant": false,
-    "inputs": [
-      {
-        "name": "key",
-        "type": "uint256"
-      },
-      {
-        "name": "tariffa",
-        "type": "string"
-      },
-      {
-        "name": "data",
-        "type": "string"
-      },
-      {
-        "name": "descrizione",
-        "type": "string"
-      },
-      {
-        "name": "prezzo_unitario",
-        "type": "uint128"
-      },
-      {
-        "name": "percentuale_completamento",
-        "type": "uint128"
-      }
-    ],
-    "name": "updateRecord",
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "constant": false,
-    "inputs": [
-      {
-        "name": "key",
-        "type": "uint256"
-      }
-    ],
-    "name": "remRecord",
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [
-      {
-        "name": "key",
-        "type": "uint256"
-      }
-    ],
-    "name": "getRecord",
-    "outputs": [
-      {
-        "name": "tariffa",
-        "type": "string"
-      },
-      {
-        "name": "data",
-        "type": "string"
-      },
-      {
-        "name": "descrizione",
-        "type": "string"
-      },
-      {
-        "name": "percentuale_completamento",
-        "type": "uint128"
-      },
-      {
-        "name": "prezzo_unitario",
-        "type": "uint128"
-      },
-      {
-        "name": "debito",
-        "type": "uint128"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "getRecordsCount",
-    "outputs": [
-      {
-        "name": "count",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [
-      {
-        "name": "index",
-        "type": "uint256"
-      }
-    ],
-    "name": "getRecordAtIndex",
-    "outputs": [
-      {
-        "name": "key",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  }
-];
-
-//const Web3 = require('web3');
-web3js.eth.defaultAccount = '0xed9d02e382b34818e88B88a309c7fe71E65f419d'
-var myContract = new web3js.eth.Contract(Abi, '0xA501AfD7d6432718daF4458Cfae8590d88de818E', { gasPrice: '20000000000'});
-
-
+//var posneg = document.getElementById(radiogroup);
 /* myContract.methods.newRecord(8,'ac','db','cd',2,4).send({from:web3js.eth.defaultAccount,gas: 4500000,gasPrice:'0'}, function(error, transactionHash){
  console.log(transactionHash);
-});
-myContract.methods.newRecord(7,'ac','db','cd',2,4).send({from:web3js.eth.defaultAccount,gas: 4500000,gasPrice:'0'}, function(error, transactionHash){
-  console.log(transactionHash);
- }); */
-//debugger
-myContract.methods.getRecordsCount().call().then(console.log)
-myContract.methods.getRecord(7).call((err, result) => { console.log("0->"+result[0]+"\n"+"1->"+result[1]+"\n"+"2->"+result[2]+"\n"+"3->"+result[3]+"\n"+"4->"+result[4])});
+});*/
+function nuovoRecord(){
+  var nord = document.getElementById('numord').value;
+  var tariffa = document.getElementById('tariffa').value;
+  var data = document.getElementById('date').value;
+  var descrizione = document.getElementById('deslav').value;
+  var percentuale = document.getElementById('percentuale').value;
+  myContract.methods.newRecord(nord,tariffa,data,descrizione,percentuale,4).send({from:web3js.eth.defaultAccount,gas: 4500000,gasPrice:'0'}, function(error, transactionHash){
+    alert("Inserimento avvenuto con successo");
+  }); 
+}
+//debugger 45543
+//myContract.methods.getRecordsCount().call().then(console.log)
+//myContract.methods.getRecord(7).call((err, result) => { console.log("0->"+result[0]+"\n"+"1->"+result[1]+"\n"+"2->"+result[2]+"\n"+"3->"+result[3]+"\n"+"4->"+result[4])});
 //console.log(web3js.eth.getAccounts());
+function crea_riga(tariffa, data, desc, pos, neg, riserva){
+    
+  var tr =$('<tr/>', {
+      id: 'tr'+tariffa ,
+  });
+  
+  var tariffaComplete = tariffa + '<br>' + data;
+  var td_tariffa = $('<td/>',{
+      id: 'tar' 
+  }).appendTo(tr);
+  $(td_tariffa).html(tariffaComplete);
+
+  var td_des = $('<td/>',{
+      id: 'des' 
+  }).appendTo(tr);
+  $(td_des).html(desc);
+
+  var td_pos = $('<td/>',{
+      id: 'pos' 
+  }).appendTo(tr);
+  $(td_pos).html(pos);
+
+  var td_neg = $('<td/>',{
+      id: 'neg' 
+  }).appendTo(tr);
+  $(td_neg).html(neg);
+
+  var td_riserva = $('<td/>',{
+      id: 'riserva' 
+  }).appendTo(tr);
+  $(td_riserva).html(riserva);
+
+
+  tr.appendTo("#dataTables-example > tbody");
+  
+}
+
+function visualizzaLibretto(){
+  myContract.methods.getRecord(45543).call((err, result) => { 
+    console.log(result);
+    var tariffa = result.tariffa;
+    var data = result.data;
+    var desc = result.descrizione;
+    var pos = result.percentuale_completamento;
+    var neg = result.percentuale_completamento;
+    var riserva = "si";
+    console.log(data);
+    console.log(desc);
+    console.log(pos);
+    console.log(neg);
+    console.log(riserva);
+    crea_riga(tariffa,data,desc,pos,neg,riserva);  
+  });
+}
