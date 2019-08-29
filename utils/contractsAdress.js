@@ -1,1 +1,1 @@
-const misureandregistroAdress = "0xA501AfD7d6432718daF4458Cfae8590d88de818E";
+const misureandregistroAdress = "0xCE1663b2f636a04Fd661fF3caFD7A96458FE3696";
