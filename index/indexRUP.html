@@ -19,6 +19,25 @@
     <!-- FIREBASE-->
     <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-auth.js"></script>
+    <script>
+            // Your web app's Firebase configuration
+            
+            var firebaseConfig = {
+                apiKey: "AIzaSyCSZkGy0MnhJ6RdEdaCjObelHariS-xeI4",
+                authDomain: "easyappalto-5d310.firebaseapp.com",
+                databaseURL: "https://easyappalto-5d310.firebaseio.com",
+                projectId: "easyappalto-5d310",
+                storageBucket: "easyappalto-5d310.appspot.com",
+                messagingSenderId: "787583540199",
+                appId: "1:787583540199:web:f276d10bf841e1ff"
+            };
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+    </script>
+    <!---->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+     <!--My JS file-->
+     <script src="index.js"></script>
 </head>
 <body>
     <div id="wrapper">
@@ -29,7 +48,7 @@
   <div style="color: white;
 padding: 15px 50px 5px 50px;
 float: right;
-font-size: 16px;"> <a href="#" class="btn btn-danger square-btn-adjust">Il mio profilo</a> <a href="../login/login.html" class="btn btn-danger square-btn-adjust">Logout</a> </div>
+font-size: 16px;"> <a href="#" class="btn btn-danger square-btn-adjust">Il mio profilo</a> <a class="btn btn-danger square-btn-adjust" onclick="logout()">Logout</a> </div>
         </nav>   
            <!-- /. NAV TOP  -->
                 <nav class="navbar-default navbar-side" role="navigation">
@@ -144,6 +163,13 @@ font-size: 16px;"> <a href="#" class="btn btn-danger square-btn-adjust">Il mio p
                 $('#dataTables-example').dataTable();
             });
         </script>
-  
+    <script>
+            var ruoloPage = "rup";
+            var ruolo = sessionStorage.getItem("ruolo");
+            if (ruoloPage != ruolo) {
+                window.alert("Questa pagina non è di tua compentenza!");
+                window.location.href = '../index/indexRUP.html';
+            }
+    </script>
 </body>
 </html>

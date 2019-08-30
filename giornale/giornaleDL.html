@@ -214,6 +214,14 @@ font-size: 16px;"> <a href="#" class="btn btn-danger square-btn-adjust">Il mio p
                 $('#dataTables-example').dataTable();
             });
         </script>
+    <script>
+            var ruoloPage = "DL";
+            var ruolo = sessionStorage.getItem("ruolo");
+            if (ruoloPage != ruolo) {
+                window.alert("Questa pagina non è di tua compentenza!");
+                window.location.href = '../index/indexDL.html';
+            }
+    </script>
   
 </body>
 </html>
