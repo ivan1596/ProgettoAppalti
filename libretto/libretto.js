@@ -11,23 +11,25 @@ var address = misureandregistroAdress;
 web3js.eth.defaultAccount = '0xed9d02e382b34818e88B88a309c7fe71E65f419d';
 var myContract = new web3js.eth.Contract(Abi, address, { gasPrice: '20000000000'});
 
+
 //var posneg = document.getElementById(radiogroup);
 /* myContract.methods.newRecord(8,'ac','db','cd',2,4).send({from:web3js.eth.defaultAccount,gas: 4500000,gasPrice:'0'}, function(error, transactionHash){
  console.log(transactionHash);
 });*/
-function nuovoRecord(){
-  var nord = document.getElementById('numord').value;
+async function nuovoRecord(){
+  var num_ord = document.getElementById('numord').value;
   var tariffa = document.getElementById('tariffa').value;
   var data = document.getElementById('date').value;
   var descrizione = document.getElementById('deslav').value;
   var prezzo_unitario = document.getElementById('prezzo_unitario').value;
   var percentuale = document.getElementById('percentuale').value;
-  var posneg = document.getElementById('optionsRadios1').value; console.log(posneg)
-  myContract.methods.newRecord(4133333434344,tariffa,data,nord,descrizione,prezzo_unitario,percentuale).send({from:web3js.eth.defaultAccount,gas: 4500000,gasPrice:'0'}, function(error, transactionHash){
-    alert("Inserimento avvenuto con successo");
+  var posneg = document.getElementById('optionsRadios1').checked;
+  if(posneg=='false'){percentuale = percentuale * -1}//true -> pos
+  await myContract.methods.newRecord(429633486,tariffa,data,num_ord,descrizione,prezzo_unitario,percentuale).send({from:web3js.eth.defaultAccount,gas: 4500000,gasPrice:'0'}, function(error, transactionHash){
+    alert("Attendere il ricaricamento della pagina per vedere le modifiche");
     
   }); 
-  //location.reload();
+  location.reload();
 }
 
 function crea_riga(num_ord, tariffa, data, desc, pos, neg, riserva){
@@ -74,9 +76,9 @@ function crea_riga(num_ord, tariffa, data, desc, pos, neg, riserva){
        
   for(n=0 ; n<tot ; n++){
       let chiave = await myContract.methods.getRecorKeydAtIndex(n).call()
-      myContract.methods.getRecordWithKey(chiave).call((err, result) => { 
+      await myContract.methods.getRecordWithKey(chiave).call((err, result) => { 
       console.log(result);
-      var num_ord = result.nord;
+      var num_ord = result.num_ord;
       var tariffa = result.tariffa;
       var data = result.data;
       var desc = result.descrizione;
