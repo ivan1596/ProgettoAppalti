@@ -17,6 +17,7 @@ var myContract = new web3js.eth.Contract(Abi, address, { gasPrice: '20000000000'
  console.log(transactionHash);
 });*/
 async function nuovoRecord(){
+  let tot = await myContract.methods.getRecordsCount().call()
   var num_ord = document.getElementById('numord').value;
   var tariffa = document.getElementById('tariffa').value;
   var data = document.getElementById('date').value;
@@ -25,7 +26,7 @@ async function nuovoRecord(){
   var percentuale = document.getElementById('percentuale').value;
   var posneg = document.getElementById('optionsRadios1').checked;
   if(posneg=='false'){percentuale = percentuale * -1}//true -> pos
-  await myContract.methods.newRecord(429633486,tariffa,data,num_ord,descrizione,prezzo_unitario,percentuale).send({from:web3js.eth.defaultAccount,gas: 4500000,gasPrice:'0'}, function(error, transactionHash){
+  await myContract.methods.newRecord(tot++,tariffa,data,num_ord,descrizione,prezzo_unitario,percentuale).send({from:web3js.eth.defaultAccount,gas: 4500000,gasPrice:'0'}, function(error, transactionHash){
     alert("Attendere il ricaricamento della pagina per vedere le modifiche");
     
   }); 

@@ -1,0 +1,219 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+      <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UNIVPM</title>
+	<!-- BOOTSTRAP STYLES-->
+    <link href="../assets/css/bootstrap.css" rel="stylesheet" />
+     <!-- FONTAWESOME STYLES-->
+    <link href="../assets/css/font-awesome.css" rel="stylesheet" />
+     <!-- MORRIS CHART STYLES
+    <link href="../assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" /> -->
+    <!-- CUSTOM STYLES-->
+    <link href="../assets/css/custom.css" rel="stylesheet" />
+     <!-- GOOGLE FONTS-->
+   <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <!-- TABLE STYLES-->
+    <link href="../assets/js/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
+    <!-- FIREBASE-->
+    <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-auth.js"></script>
+    <!-- WEB3JS-->
+    <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.34/dist/web3.min.js"></script>
+    <script>
+        var web3js = new Web3(new Web3.providers.HttpProvider('http://localhost:22000'));
+    </script>
+    <script type="text/javascript" src="./../utils/contractsAbi.js"></script>
+    <script type="text/javascript" src="./../utils/contractsAdress.js"></script>
+    <script src="giornale.js"></script>
+    
+
+</head>
+<body>
+    <div id="wrapper">
+        <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="../index/indexRUP.html">UNIVPM</a> 
+            </div>
+  <div style="color: white;
+padding: 15px 50px 5px 50px;
+float: right;
+font-size: 16px;"> <a href="#" class="btn btn-danger square-btn-adjust">Il mio profilo</a> <a href="../login/login.html" class="btn btn-danger square-btn-adjust">Logout</a> </div>
+        </nav>   
+           <!-- /. NAV TOP  -->
+                <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+				<li class="text-center">
+                    <img src="../assets/img/Logo_Università_Politecnica_delle_Marche.png" class="user-image img-responsive"/>
+					</li>
+					  <li>
+                        <a href="../index/indexRUP.html"><i class="fa fa-home fa-3x"></i> Home</a>
+                    </li>
+                     <li>
+                        <a class="active-menu" href="../giornale/giornaleRUP.html"><i class="fa fa-pencil fa-3x"></i> Giornale dei lavori</a>
+                    </li>
+                    <li>
+                        <a  href="../libretto/librettoRUP.html"><i class="fa fa-book fa-3x"></i> Libretto delle misure</a>
+                    </li>
+						   <li  >
+                        <a   href="../registro/registroRUP.html"><i class="fa fa-table fa-3x"></i> Registro di contabilità</a>
+                    </li>	
+                      <li  >
+                        <a  href="../sal/salRUP.html"><i class="fa fa-bar-chart-o fa-3x"></i> Stato avanzamento lavori</a>
+                    </li>
+                </ul>
+               
+            </div>
+            
+        </nav>  
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper" >
+            <div id="page-inner">
+                <div class="row">
+                    <div class="col-md-12">  
+                    </div>
+                </div>    
+                 <!-- /. ROW  -->
+               <div class="row">
+                <div class="col-md-12">
+                    <!-- Advanced Tables -->
+                    <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                        <thead>
+                                            <tr>
+                                                <th>Data annotazione</th>
+                                                <th>Riserva</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            
+                                            <tr class="gradeA">
+                                                <td><a href="#1" data-toggle="modal">12/10/2018</a></td>
+                                                <div class="modal fade" id="1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                                <h4 class="modal-title" id="myModalLabel">12/10/2018</h4>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <p><b>Meteo</b></p><br>Sole 13,5°C, Precip: Assenti
+                                                                <hr>
+                                                                <p><b>Annotazioni generali e speciali sull'andamento di esecuzione
+                                                                dei lavori, avvenimenti straordinari e tempo impiegato</b></p><br>
+                                                                Verifica delle generalità degli operai presenti in cantiere.
+                                                                Scavo di fondazione e protezione degli scavi con opere provvisionali.
+                                                                <hr>
+                                                                <a>immagine.jpg</a><br>
+                                                                <a>immagine2.jpg</a>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>   
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <td><form>
+                                                        <input type="checkbox" onclick="return false;">
+                                                    </form>
+                                                </td>
+                                                
+                                            </tr>
+                                            <tr class="gradeU">
+                                                <td><a href="#2" data-toggle="modal">20/10/2018</a></td>
+                                                <div class="modal fade" id="2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                                <h4 class="modal-title" id="myModalLabel">20/10/2018</h4>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                            Qui ci va l'annotazione piena </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>   
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <td><form>
+                                                        <input type="checkbox" checked onclick="return false;">
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        </tbody></table></div></div></div>
+                    <!--  Modals-->
+                    
+                            <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#aggiungi">
+                            Aggiungi annotazione
+                            </button>
+                            <div class="modal fade" id="aggiungi" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title" id="myModalLabel">Nuova annotazione</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                                <form role="form">
+                                                        <div class="form-group">
+                                                            <label>Data</label><br>
+                                                            <input type="date"">
+                                                        </div>
+                                                        <div class="form-group">
+                                                                <label>Meteo</label>
+                                                                <input class="form-control">
+                                                            </div>
+                                                        <div class="form-group">
+                                                            <label>Annotazioni generali e speciali sull'andamento di esecuzione
+                                                                    dei lavori, avvenimenti straordinari e tempo impiegato</label>
+                                                            <textarea class="form-control" rows="3"></textarea>
+                                                        </div>
+                                                        <div class="form-group">
+                                                                <label>Immagine</label>
+                                                                <input type="file" multiple>
+                                                            </div>
+                                                   </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Annulla</button>
+                                            <button type="button" class="btn btn-primary">Conferma</button></form>   
+                            </div>
+                        </div>
+                    </div>
+                     <!-- End Modals-->
+                </div>
+            </div>
+                <!-- /. ROW  -->
+    </div>
+             <!-- /. PAGE INNER  -->
+            </div>
+         <!-- /. PAGE WRAPPER  -->
+        </div>
+     <!-- /. WRAPPER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="../assets/js/jquery-1.10.2.js"></script>
+      <!-- BOOTSTRAP SCRIPTS -->
+    <script src="../assets/js/bootstrap.min.js"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="../assets/js/jquery.metisMenu.js"></script>
+     <!-- MORRIS CHART SCRIPTS 
+    <script src="../assets/js/morris/raphael-2.1.0.min.js"></script>
+    <script src="../assets/js/morris/morris.js"></script> -->
+      <!-- CUSTOM SCRIPTS -->
+    <script src="../assets/js/custom.js"></script>
+    <!-- DATA TABLE SCRIPTS -->
+    <script src="../assets/js/dataTables/jquery.dataTables.js"></script>
+    <script src="../assets/js/dataTables/dataTables.bootstrap.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('#dataTables-example').dataTable();
+            });
+        </script>
+  
+</body>
+</html>
