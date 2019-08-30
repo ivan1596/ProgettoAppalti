@@ -11,31 +11,34 @@ var address = misureandregistroAdress;
 web3js.eth.defaultAccount = '0xed9d02e382b34818e88B88a309c7fe71E65f419d';
 var myContract = new web3js.eth.Contract(Abi, address, { gasPrice: '20000000000'});
 
+
 //var posneg = document.getElementById(radiogroup);
 /* myContract.methods.newRecord(8,'ac','db','cd',2,4).send({from:web3js.eth.defaultAccount,gas: 4500000,gasPrice:'0'}, function(error, transactionHash){
  console.log(transactionHash);
 });*/
-function nuovoRecord(){
-  var nord = document.getElementById('numord').value;
+async function nuovoRecord(){
+  var num_ord = document.getElementById('numord').value;
   var tariffa = document.getElementById('tariffa').value;
   var data = document.getElementById('date').value;
   var descrizione = document.getElementById('deslav').value;
+  var prezzo_unitario = document.getElementById('prezzo_unitario').value;
   var percentuale = document.getElementById('percentuale').value;
-  myContract.methods.newRecord(nord,tariffa,data,descrizione,percentuale,4).send({from:web3js.eth.defaultAccount,gas: 4500000,gasPrice:'0'}, function(error, transactionHash){
-    alert("Inserimento avvenuto con successo");
+  var posneg = document.getElementById('optionsRadios1').checked;
+  if(posneg=='false'){percentuale = percentuale * -1}//true -> pos
+  await myContract.methods.newRecord(429633486,tariffa,data,num_ord,descrizione,prezzo_unitario,percentuale).send({from:web3js.eth.defaultAccount,gas: 4500000,gasPrice:'0'}, function(error, transactionHash){
+    alert("Attendere il ricaricamento della pagina per vedere le modifiche");
+    
   }); 
+  location.reload();
 }
-//debugger 45543
-//myContract.methods.getRecordsCount().call().then(console.log)
-//myContract.methods.getRecord(7).call((err, result) => { console.log("0->"+result[0]+"\n"+"1->"+result[1]+"\n"+"2->"+result[2]+"\n"+"3->"+result[3]+"\n"+"4->"+result[4])});
-//console.log(web3js.eth.getAccounts());
-function crea_riga(tariffa, data, desc, pos, neg, riserva){
+
+function crea_riga(num_ord, tariffa, data, desc, pos, neg, riserva){
     
   var tr =$('<tr/>', {
       id: 'tr'+tariffa ,
   });
   
-  var tariffaComplete = tariffa + '<br>' + data;
+  var tariffaComplete = num_ord + '<br>' + tariffa + '<br>' + data;
   var td_tariffa = $('<td/>',{
       id: 'tar' 
   }).appendTo(tr);
@@ -66,20 +69,31 @@ function crea_riga(tariffa, data, desc, pos, neg, riserva){
   
 }
 
-function visualizzaLibretto(){
-  myContract.methods.getRecord(45543).call((err, result) => { 
-    console.log(result);
-    var tariffa = result.tariffa;
-    var data = result.data;
-    var desc = result.descrizione;
-    var pos = result.percentuale_completamento;
-    var neg = result.percentuale_completamento;
-    var riserva = "si";
-    console.log(data);
-    console.log(desc);
-    console.log(pos);
-    console.log(neg);
-    console.log(riserva);
-    crea_riga(tariffa,data,desc,pos,neg,riserva);  
-  });
+
+ async function visualizzaLibretto(){
+      let tot = await myContract.methods.getRecordsCount().call()
+      console.log(tot)
+       
+  for(n=0 ; n<tot ; n++){
+      let chiave = await myContract.methods.getRecorKeydAtIndex(n).call()
+      await myContract.methods.getRecordWithKey(chiave).call((err, result) => { 
+      console.log(result);
+      var num_ord = result.num_ord;
+      var tariffa = result.tariffa;
+      var data = result.data;
+      var desc = result.descrizione;
+    //if()
+      var pos = result.percentuale_completamento;
+      var neg = result.percentuale_completamento;
+      var riserva;
+      if(result.riserva=='false'){riserva = "NO";}
+      else{riserva = "SI"}
+      console.log(data);
+      console.log(desc);
+      console.log(pos);
+      console.log(neg);
+      console.log(riserva);
+      crea_riga(num_ord,tariffa,data,desc,pos,neg,riserva);  
+  });}
+   
 }
