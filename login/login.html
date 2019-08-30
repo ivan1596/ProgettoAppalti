@@ -16,13 +16,35 @@
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
     <!-- TABLE STYLES-->
     <link href="../assets/js/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
-  <!--My JS file-->
-    <script src="login.js"></script>
+ 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-app.js"></script>
+
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-firestore.js"></script>
+
+    <script>
+    // Your web app's Firebase configuration
+    
+    var firebaseConfig = {
+        apiKey: "AIzaSyCSZkGy0MnhJ6RdEdaCjObelHariS-xeI4",
+        authDomain: "easyappalto-5d310.firebaseapp.com",
+        databaseURL: "https://easyappalto-5d310.firebaseio.com",
+        projectId: "easyappalto-5d310",
+        storageBucket: "easyappalto-5d310.appspot.com",
+        messagingSenderId: "787583540199",
+        appId: "1:787583540199:web:f276d10bf841e1ff"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    </script>
+     <!--My JS file-->
+     <script src="login.js"></script>
 </head>
-<body>
+<body onload="getRuolo()">
     <div id="wrapper">
         <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
@@ -75,27 +97,7 @@ font-size: 16px;">
 </div>
 <!-- /. WRAPPER  -->
 </div>
-<!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
-<!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-app.js"></script>
 
-<!-- Add Firebase products that you want to use -->
-<script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-auth.js"></script>
-
-<script>
-  // Your web app's Firebase configuration
-  var firebaseConfig = {
-    apiKey: "AIzaSyCSZkGy0MnhJ6RdEdaCjObelHariS-xeI4",
-    authDomain: "easyappalto-5d310.firebaseapp.com",
-    databaseURL: "https://easyappalto-5d310.firebaseio.com",
-    projectId: "easyappalto-5d310",
-    storageBucket: "",
-    messagingSenderId: "787583540199",
-    appId: "1:787583540199:web:f276d10bf841e1ff"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-</script>
 <!-- JQUERY SCRIPTS -->
 <script src="../assets/js/jquery-1.10.2.js"></script>
  <!-- BOOTSTRAP SCRIPTS -->
