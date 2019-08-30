@@ -1,14 +1,10 @@
-const misureandregistroABI = [
+misureandregistroABI = [
   {
     "inputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-<<<<<<< HEAD
-    "type": "constructor"
-=======
     "type": "constructor",
     "signature": "constructor"
->>>>>>> 69cf4fd10789474a2e002a1422d38352e39420b2
   },
   {
     "anonymous": false,
@@ -65,12 +61,8 @@ const misureandregistroABI = [
       }
     ],
     "name": "LogNewLDMRecord",
-<<<<<<< HEAD
-    "type": "event"
-=======
     "type": "event",
     "signature": "0x297644f69d3b815d4a58cd95f1f1debf34068cfa2a385c451d0fc7c749f4a984"
->>>>>>> 69cf4fd10789474a2e002a1422d38352e39420b2
   },
   {
     "anonymous": false,
@@ -127,12 +119,8 @@ const misureandregistroABI = [
       }
     ],
     "name": "LogUpdateLDMRecord",
-<<<<<<< HEAD
-    "type": "event"
-=======
     "type": "event",
     "signature": "0xcdd8da1749e9b542b0a5735755f724f649beacebddd1df6228ed772927268d1d"
->>>>>>> 69cf4fd10789474a2e002a1422d38352e39420b2
   },
   {
     "anonymous": false,
@@ -149,34 +137,8 @@ const misureandregistroABI = [
       }
     ],
     "name": "LogRemLDMRecord",
-<<<<<<< HEAD
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "name": "sender",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "name": "key",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "name": "riserva",
-        "type": "bool"
-      }
-    ],
-    "name": "LogUpdateRiservaLDMRecord",
-    "type": "event"
-=======
     "type": "event",
     "signature": "0x7aa203b0c72552bd4514add97dacd45db05062baba0d480d60b11adcc2a95bb2"
->>>>>>> 69cf4fd10789474a2e002a1422d38352e39420b2
   },
   {
     "constant": false,
@@ -214,30 +176,8 @@ const misureandregistroABI = [
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-<<<<<<< HEAD
-    "type": "function"
-  },
-  {
-    "constant": false,
-    "inputs": [
-      {
-        "name": "key",
-        "type": "uint256"
-      },
-      {
-        "name": "riserva",
-        "type": "bool"
-      }
-    ],
-    "name": "updateRiserva",
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
-=======
     "type": "function",
     "signature": "0xcb818b7b"
->>>>>>> 69cf4fd10789474a2e002a1422d38352e39420b2
   },
   {
     "constant": false,
@@ -279,12 +219,8 @@ const misureandregistroABI = [
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-<<<<<<< HEAD
-    "type": "function"
-=======
     "type": "function",
     "signature": "0xb21743f4"
->>>>>>> 69cf4fd10789474a2e002a1422d38352e39420b2
   },
   {
     "constant": false,
@@ -298,12 +234,8 @@ const misureandregistroABI = [
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-<<<<<<< HEAD
-    "type": "function"
-=======
     "type": "function",
     "signature": "0xdccd894a"
->>>>>>> 69cf4fd10789474a2e002a1422d38352e39420b2
   },
   {
     "constant": true,
@@ -350,12 +282,8 @@ const misureandregistroABI = [
     ],
     "payable": false,
     "stateMutability": "view",
-<<<<<<< HEAD
-    "type": "function"
-=======
     "type": "function",
     "signature": "0x26afe910"
->>>>>>> 69cf4fd10789474a2e002a1422d38352e39420b2
   },
   {
     "constant": true,
@@ -369,12 +297,8 @@ const misureandregistroABI = [
     ],
     "payable": false,
     "stateMutability": "view",
-<<<<<<< HEAD
-    "type": "function"
-=======
     "type": "function",
     "signature": "0x505158bb"
->>>>>>> 69cf4fd10789474a2e002a1422d38352e39420b2
   },
   {
     "constant": true,
@@ -393,11 +317,7 @@ const misureandregistroABI = [
     ],
     "payable": false,
     "stateMutability": "view",
-<<<<<<< HEAD
-    "type": "function"
-=======
     "type": "function",
     "signature": "0x805d4dd2"
->>>>>>> 69cf4fd10789474a2e002a1422d38352e39420b2
   }
-];
+]
