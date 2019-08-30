@@ -41,7 +41,7 @@
   <div style="color: white;
 padding: 15px 50px 5px 50px;
 float: right;
-font-size: 16px;"> <a href="#" class="btn btn-danger square-btn-adjust">Il mio profilo</a> <a href="../login/login.html" class="btn btn-danger square-btn-adjust">Logout</a> </div>
+font-size: 16px;"> <a href="#" class="btn btn-danger square-btn-adjust">Vedi storico eliminazioni</a> <a href="../login/login.html" class="btn btn-danger square-btn-adjust">Logout</a> </div>
         </nav>   
            <!-- /. NAV TOP  -->
                 <nav class="navbar-default navbar-side" role="navigation">
@@ -92,23 +92,11 @@ font-size: 16px;"> <a href="#" class="btn btn-danger square-btn-adjust">Il mio p
                                              <tr>
                                                  <th rowspan=2>Num.Ord.<br>Tariffa<br>Data</th>
                                                  <th rowspan=2>Designazione dei Lavori</th>
-                                                 <th colspan=2>Quantità/percentuali</th>
+                                                 <th >Percentuale</th>
                                                  <th rowspan=2>Riserva</th>
-                                             </tr>
-                                             <tr>
-                                                     <th>Positivi</th>
-                                                     <th>Negativi</th>
                                              </tr>
                                          </thead>
                                          <tbody>
-                                             <tr class="odd gradeX">
-                                                 <td>Trident</td>
-                                                 <td>Internet Explorer 4.0</td>
-                                                 <td>Win 95+</td>
-                                                 <td class="center">4</td>
-                                                 <td class="center">X</td>
-                                             </tr>
-                                             
                                              </tbody></table></div></div></div>
                                              <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#aggiungi">
                                                 Aggiungi misura
@@ -139,19 +127,8 @@ font-size: 16px;"> <a href="#" class="btn btn-danger square-btn-adjust">Il mio p
                                                                                 <textarea class="form-control" rows="3" id="deslav"></textarea>
                                                                             </div>
                                                                             <div class="form-group">
-                                                                                    <label>Quantità/Percentuale</label>
-                                                                                    <input class="form-control" id="percentuale">
-                                                                                    <div class="radio" id="radiogroup">
-
-                                                                                        <label>
-                                                                                            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">Positiva
-                                                                                        </label>
-                                                                                    </div>
-                                                                                    <div class="radio">
-                                                                                        <label>
-                                                                                            <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">Negativa
-                                                                                        </label>
-                                                                                    </div>
+                                                                                    <label>Percentuale</label>
+                                                                                    <input class="form-control" id="percentuale">                                                                                
                                                                             </div>
                                                                             <div class="form-group">
                                                                                     <label>Prezzo unitario</label>

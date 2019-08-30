@@ -41,7 +41,7 @@
   <div style="color: white;
 padding: 15px 50px 5px 50px;
 float: right;
-font-size: 16px;"> <a href="#" class="btn btn-danger square-btn-adjust">Il mio profilo</a> <a href="../login/login.html" class="btn btn-danger square-btn-adjust">Logout</a> </div>
+font-size: 16px;"> <a href="#" class="btn btn-danger square-btn-adjust">Vedi storico eliminazioni</a> <a href="../login/login.html" class="btn btn-danger square-btn-adjust">Logout</a> </div>
         </nav>   
            <!-- /. NAV TOP  -->
                 <nav class="navbar-default navbar-side" role="navigation">
@@ -92,80 +92,13 @@ font-size: 16px;"> <a href="#" class="btn btn-danger square-btn-adjust">Il mio p
                                              <tr>
                                                  <th rowspan=2>Num.Ord.<br>Tariffa<br>Data</th>
                                                  <th rowspan=2>Designazione dei Lavori</th>
-                                                 <th colspan=2>Quantità/percentuali</th>
+                                                 <th >Percentuale</th>
                                                  <th rowspan=2>Riserva</th>
                                              </tr>
-                                             <tr>
-                                                     <th>Positivi</th>
-                                                     <th>Negativi</th>
-                                             </tr>
                                          </thead>
-                                         <tbody>
-                                             <tr class="odd gradeX">
-                                                 <td>Trident</td>
-                                                 <td>Internet Explorer 4.0</td>
-                                                 <td>Win 95+</td>
-                                                 <td class="center">4</td>
-                                                 <td class="center">X</td>
-                                             </tr>
-                                             
+                                         <tbody>                                                                                        
                                              </tbody></table></div></div></div>
-                                             <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#aggiungi">
-                                                Aggiungi misura
-                                                </button>
-                                                <div class="modal fade" id="aggiungi" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                                <h4 class="modal-title" id="myModalLabel">Nuova misura</h4>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                    <div>
-                                                                            <div class="form-group">
-                                                                                    <label>Num.ord.</label>
-                                                                                    <input class="form-control" id="numord">
-                                                                            </div>
-                                                                            <div class="form-group">
-                                                                                        <label>Tariffa</label>
-                                                                                        <input class="form-control" id="tariffa">
-                                                                            </div>
-                                                                            <div class="form-group">
-                                                                                    <label>Data</label><br>
-                                                                                    <input type="date" id="date">
-                                                                            </div>
-                                                                            <div class="form-group">
-                                                                                <label>Designazione dei lavori</label>
-                                                                                <textarea class="form-control" rows="3" id="deslav"></textarea>
-                                                                            </div>
-                                                                            <div class="form-group">
-                                                                                    <label>Quantità/Percentuale</label>
-                                                                                    <input class="form-control" id="percentuale">
-                                                                                    <div class="radio" id="radiogroup">
-
-                                                                                        <label>
-                                                                                            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">Positiva
-                                                                                        </label>
-                                                                                    </div>
-                                                                                    <div class="radio">
-                                                                                        <label>
-                                                                                            <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">Negativa
-                                                                                        </label>
-                                                                                    </div>
-                                                                            </div>
-                                                                            <div class="form-group">
-                                                                                    <label>Prezzo unitario</label>
-                                                                                    <input class="form-control" rows="3" id="prezzo_unitario"></input>
-                                                                            </div>
-                                                                       </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-default" data-dismiss="modal">Annulla</button>
-                                                                <button type="button" class="btn btn-primary" onclick="nuovoRecord()">Conferma</button></div>   
-                                                            </div>         
-                                                        </div>
-                                                    </div>
-                                                    <!-- End Modals-->
-                                                </div>
+                                                
                      <!-- /. ROW  -->
              </div>
                     
