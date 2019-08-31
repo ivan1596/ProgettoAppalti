@@ -7,17 +7,19 @@ if(utente == null){
 var Abi = misureandregistroABI;
 var address = misureandregistroAdress;
 web3js.eth.defaultAccount = '0xed9d02e382b34818e88B88a309c7fe71E65f419d';
-var myContract = new web3js.eth.Contract(Abi, address, { gasPrice: '20000000000'});
+var myContract = new web3js.eth.Contract(Abi, address, { gas: 10000000000000000000, gasPrice: '20000000'});
 
 async function nuovoRecord(){
   let tot = await myContract.methods.getRecordsCount().call()
-  var num_ord = document.getElementById('numord').value;
-  var tariffa = document.getElementById('tariffa').value;
-  var data = document.getElementById('date').value;
-  var descrizione = document.getElementById('deslav').value;
-  var prezzo_unitario = document.getElementById('prezzo_unitario').value;
-  var percentuale = document.getElementById('percentuale').value;
-  await myContract.methods.newRecord(tot++,tariffa,data,num_ord,descrizione,prezzo_unitario*100,percentuale*100).send({from:web3js.eth.defaultAccount,gas: 4500000,gasPrice:'0'}, function(error, transactionHash){
+  tot++
+  console.log(tot)
+  let num_ord = await document.getElementById('numord').value;
+  let tariffa = await document.getElementById('tariffa').value;
+  let data = await document.getElementById('date').value;
+  let descrizione = await document.getElementById('deslav').value;
+  let prezzo_unitario = await document.getElementById('prezzo_unitario').value;
+  let percentuale = await document.getElementById('percentuale').value;
+  await myContract.methods.newRecord(tot,tariffa,data,num_ord,descrizione,prezzo_unitario*100,percentuale*100).send({from:web3js.eth.defaultAccount,gas: 4500000,gasPrice:'0'}, function(error, transactionHash){
     alert("Attendere il ricaricamento della pagina per vedere le modifiche.\nNon premere nulla prima della fine del caricamento!");
     
   }); 
@@ -27,11 +29,17 @@ async function deleteRecord(chiave){
 
 }
 
-function crea_riga(num_ord, tariffa, data, desc, percentuale , riserva){
+function crea_riga(num_ord, tariffa, data, desc, percentuale , riserva, n){
     
   var tr =$('<tr/>', {
       id: 'tr',
   });
+  var inputI =$('<input>', {
+    id: 'inputI',
+});
+var inputO =$('</input>', {
+    id: 'inputO',
+});
   
   var tariffaComplete = num_ord + '<br>' + tariffa + '<br>' + data;
   var td_tariffa = $('<td/>',{
@@ -53,7 +61,12 @@ function crea_riga(num_ord, tariffa, data, desc, percentuale , riserva){
       id: 'riserva' 
   }).appendTo(tr);
   $(td_riserva).html(riserva);
+console.log(n)
+ $('<td/>',{ id: 'tdradio'+n}).appendTo(tr);
 
+var i = '#tdradio'+n
+$(i).append("<input></input>");
+//<input type="radio"  id="optionsRadios1" value="option1" checked=""></input>
 
   tr.appendTo("#dataTables-example > tbody");
   
@@ -80,7 +93,8 @@ function crea_riga(num_ord, tariffa, data, desc, percentuale , riserva){
       console.log(data);
       console.log(desc);
       console.log(riserva);
-      crea_riga(num_ord,tariffa,data,desc,perc/100,riserva);  
+      console.log(result[0])
+      crea_riga(num_ord,tariffa,data,desc,perc/100,riserva,n);  
   });}
    
 }
