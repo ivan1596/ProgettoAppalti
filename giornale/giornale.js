@@ -17,32 +17,42 @@ async function nuovoRecord(){
     let immagine = await document.getElementById('immagine').value;
     let meteo = await document.getElementById('meteo').value;
     let data = await document.getElementById('date').value;
+    console.log(tot,data,meteo,annotazioni)
     await myContract.methods.newRecord(tot,data,meteo,annotazioni).send({from:web3js.eth.defaultAccount,gas: 4500000,gasPrice:'0'}, function(error, transactionHash){
     alert("Attendere il ricaricamento della pagina per vedere le modifiche.\nNon premere nulla prima della fine del caricamento!");
   }); 
   location.reload();
 }
 
-function crea_riga(annotazioni , riserva){
+async function visualizzaModale(n){
+        let chiave = await myContract.methods.getRecorKeydAtIndex(n).call();
+        await myContract.methods.getRecordWithKey(chiave).call((err, result) => {
+        $('#datamodal').html(result.data)
+        $('#meteomodale').html(result.meteo)
+        $('#annmod').html(result.annotazioni)});
+       
+        $('#1').modal('show');
+}
+
+
+function crea_riga(data , riserva, n){
     
     var tr =$('<tr/>', {
         id: 'tr',
     });
-    var td_annotazioni = $('<td/>',{
-        id: 'tar' 
-    }).appendTo(tr);
-    $(td_annotazioni).html(annotazioni);
+    var td_data = $('<td/>').appendTo(tr);
+    var a2 = '<a onclick="visualizzaModale('+n+')" id='+n+'>'+data+'</a>';
 
+    $(a2).appendTo(td_data);
     var td_riserva = $('<td/>',{
-        id: 'riserva' 
+        id: 'riserva'
     }).appendTo(tr);
     $(td_riserva).html(riserva);
-  
-  
+
     tr.appendTo("#dataTables-example > tbody");
     
   }
-  
+
   
    async function visualizzaGiornale(){
         let tot = await myContract.methods.getRecordsCount().call()
@@ -52,20 +62,13 @@ function crea_riga(annotazioni , riserva){
         let chiave = await myContract.methods.getRecorKeydAtIndex(n).call()
         await myContract.methods.getRecordWithKey(chiave).call((err, result) => { 
         console.log(result);
-        var num_ord = result.num_ord;
-        var tariffa = result.tariffa;
         var data = result.data;
-        var desc = result.descrizione;
-        var perc = result.percentuale;
-        //var chiave = result.key;
+        var meteo = result.meteo;
+        var annotazioni = result.annotazioni;
         var riserva;
-        if(result.riserva=='false'){riserva = "NO";}
-        else{riserva = "SI";}
-        console.log(data);
-        console.log(desc);
-        console.log(riserva);
-        console.log(result[0])
-        crea_riga(num_ord,tariffa,data,desc,perc/100,riserva);  
+        if(result.riserva!=="false"){ crea_riga(data,"NO",n) }//è al contrario
+        else{crea_riga(data,"SI",n) }
+       
     });}
      
   }
