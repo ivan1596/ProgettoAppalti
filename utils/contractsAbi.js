@@ -1,12 +1,5 @@
 misureandregistroABI = [
   {
-    "inputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "constructor",
-    "signature": "constructor"
-  },
-  {
     "anonymous": false,
     "inputs": [
       {
@@ -227,49 +220,6 @@ misureandregistroABI = [
       {
         "name": "key",
         "type": "uint256"
-      },
-      {
-        "name": "tariffa",
-        "type": "string"
-      },
-      {
-        "name": "num_ord",
-        "type": "string"
-      },
-      {
-        "name": "data",
-        "type": "string"
-      },
-      {
-        "name": "descrizione",
-        "type": "string"
-      },
-      {
-        "name": "prezzo_unitario",
-        "type": "uint128"
-      },
-      {
-        "name": "percentuale_completamento",
-        "type": "uint128"
-      },
-      {
-        "name": "riserva",
-        "type": "bool"
-      }
-    ],
-    "name": "updateRecord",
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function",
-    "signature": "0xb21743f4"
-  },
-  {
-    "constant": false,
-    "inputs": [
-      {
-        "name": "key",
-        "type": "uint256"
       }
     ],
     "name": "remRecord",
@@ -362,16 +312,9 @@ misureandregistroABI = [
     "type": "function",
     "signature": "0x805d4dd2"
   }
-]
+];
 
 giornaleABI = [
-  {
-    "inputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "constructor",
-    "signature": "constructor"
-  },
   {
     "anonymous": false,
     "inputs": [
@@ -407,8 +350,7 @@ giornaleABI = [
       }
     ],
     "name": "LogNewGLRecord",
-    "type": "event",
-    "signature": "0xfa390816578ebbafe97c5b0c10029cbe611afcc0eb9901181252324878c17397"
+    "type": "event"
   },
   {
     "anonymous": false,
@@ -425,8 +367,7 @@ giornaleABI = [
       }
     ],
     "name": "LogRemGLRecord",
-    "type": "event",
-    "signature": "0x471913c04e2268294eedf5a0492b5354c45160b427c3094a78f1037c89583a78"
+    "type": "event"
   },
   {
     "anonymous": false,
@@ -448,8 +389,7 @@ giornaleABI = [
       }
     ],
     "name": "LogUpdateRiservaGLRecord",
-    "type": "event",
-    "signature": "0xf89c6a59f4436fee9da2e903c57766f68774bca50fe0c4b554b362f5ab6e1493"
+    "type": "event"
   },
   {
     "constant": false,
@@ -475,8 +415,7 @@ giornaleABI = [
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function",
-    "signature": "0xd5a45f26"
+    "type": "function"
   },
   {
     "constant": false,
@@ -494,8 +433,7 @@ giornaleABI = [
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function",
-    "signature": "0x2ac3146a"
+    "type": "function"
   },
   {
     "constant": false,
@@ -509,8 +447,7 @@ giornaleABI = [
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function",
-    "signature": "0xdccd894a"
+    "type": "function"
   },
   {
     "constant": true,
@@ -541,8 +478,7 @@ giornaleABI = [
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function",
-    "signature": "0x26afe910"
+    "type": "function"
   },
   {
     "constant": true,
@@ -556,8 +492,7 @@ giornaleABI = [
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function",
-    "signature": "0x505158bb"
+    "type": "function"
   },
   {
     "constant": true,
@@ -576,7 +511,6 @@ giornaleABI = [
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function",
-    "signature": "0x805d4dd2"
+    "type": "function"
   }
 ];

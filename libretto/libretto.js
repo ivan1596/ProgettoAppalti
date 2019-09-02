@@ -25,22 +25,21 @@ async function nuovoRecord(){
   }); 
   location.reload();
 }
-async function deleteRecord(chiave){
 
+async function deleteRecord(n){
+  let chiave = await myContract.methods.getRecorKeydAtIndex(n).call()
+  await myContract.methods.remRecord(chiave).send({from:web3js.eth.defaultAccount,gas: 4500000,gasPrice:'0'}, function(error, transactionHash){
+    alert("Attendere il ricaricamento della pagina per vedere le modifiche.\nNon premere nulla prima della fine del caricamento!");
+    
+  }); 
+  location.reload();
 }
 
 function crea_riga(num_ord, tariffa, data, desc, percentuale , riserva, n){
     
   var tr =$('<tr/>', {
       id: 'tr',
-  });
-  var inputI =$('<input>', {
-    id: 'inputI',
-});
-var inputO =$('</input>', {
-    id: 'inputO',
-});
-  
+  });  
   var tariffaComplete = num_ord + '<br>' + tariffa + '<br>' + data;
   var td_tariffa = $('<td/>',{
       id: 'tar' 
@@ -61,12 +60,14 @@ var inputO =$('</input>', {
       id: 'riserva' 
   }).appendTo(tr);
   $(td_riserva).html(riserva);
-console.log(n)
- $('<td/>',{ id: 'tdradio'+n}).appendTo(tr);
+$('<td/>').html()
 
-var i = '#tdradio'+n
-$(i).append("<input></input>");
-//<input type="radio"  id="optionsRadios1" value="option1" checked=""></input>
+  var td_button = $('<button/>',{
+    id: 'button' ,
+    class: 'btn btn-danger',
+    onclick: deleteRecord(n)
+}).appendTo(tr);
+$(td_button).html('Elimina');
 
   tr.appendTo("#dataTables-example > tbody");
   
