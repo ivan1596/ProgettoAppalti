@@ -24,6 +24,23 @@ async function nuovoRecord(){
   location.reload();
 }
 
+async function conferma(n){
+    var domanda = confirm("Sicuro di voler eliminare?");
+    if (domanda === true) {
+      await deleteRecord(n);
+    }else{
+      
+    }}
+    
+    async function deleteRecord(n){
+      let chiave = await myContract.methods.getRecorKeydAtIndex(n).call()
+      await myContract.methods.remRecord(chiave).send({from:web3js.eth.defaultAccount,gas: 4500000,gasPrice:'0'}, function(error, transactionHash){
+        alert("Attendere il ricaricamento della pagina per vedere le modifiche.\nNon premere nulla prima della fine del caricamento!");
+        
+      }); 
+      location.reload();
+    }
+    
 async function visualizzaModale(n){
         let chiave = await myContract.methods.getRecorKeydAtIndex(n).call();
         await myContract.methods.getRecordWithKey(chiave).call((err, result) => {
@@ -48,6 +65,18 @@ function crea_riga(data , riserva, n){
         id: 'riserva'
     }).appendTo(tr);
     $(td_riserva).html(riserva);
+
+    var td_id = $('<td/>',{
+        id: 'id' 
+      }).appendTo(tr);
+      
+    
+  var td_button = $('<button/>',{
+    id: 'button' ,
+    class: 'btn btn-danger',
+    onclick: "conferma("+n+")"
+}).appendTo(td_id);
+$(td_button).html('Elimina');
 
     tr.appendTo("#dataTables-example > tbody");
     
