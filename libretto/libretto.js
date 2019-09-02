@@ -25,6 +25,13 @@ async function nuovoRecord(){
   }); 
   location.reload();
 }
+async function conferma(n){
+var domanda = confirm("Sicuro di voler eliminare?");
+if (domanda === true) {
+  await deleteRecord(n);
+}else{
+  
+}}
 
 async function deleteRecord(n){
   let chiave = await myContract.methods.getRecorKeydAtIndex(n).call()
@@ -62,11 +69,16 @@ function crea_riga(num_ord, tariffa, data, desc, percentuale , riserva, n){
   $(td_riserva).html(riserva);
 $('<td/>').html()
 
+var td_id = $('<td/>',{
+  id: 'id' 
+}).appendTo(tr);
+
+
   var td_button = $('<button/>',{
     id: 'button' ,
     class: 'btn btn-danger',
-    onclick: deleteRecord(n)
-}).appendTo(tr);
+    onclick: "conferma("+n+")"
+}).appendTo(td_id);
 $(td_button).html('Elimina');
 
   tr.appendTo("#dataTables-example > tbody");
