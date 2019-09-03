@@ -17,12 +17,27 @@
     <!-- TABLE STYLES-->
     <link href="../assets/js/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
     <!-- FIREBASE-->
-    <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.5.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.5.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.5.0/firebase-storage.js"></script>
     <!-- WEB3JS-->
     <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.2.0/dist/web3.min.js"></script>
     <script>
         var web3js = new Web3(new Web3.providers.HttpProvider('http://localhost:22000'));
+    </script>
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+          apiKey: "AIzaSyCSZkGy0MnhJ6RdEdaCjObelHariS-xeI4",
+          authDomain: "easyappalto-5d310.firebaseapp.com",
+          databaseURL: "https://easyappalto-5d310.firebaseio.com",
+          projectId: "easyappalto-5d310",
+          storageBucket: "easyappalto-5d310.appspot.com",
+          messagingSenderId: "787583540199",
+          appId: "1:787583540199:web:f276d10bf841e1ff"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
     </script>
     <script type="text/javascript" src="./../utils/contractsAbi.js"></script>
     <script type="text/javascript" src="./../utils/contractsAdress.js"></script>
@@ -30,7 +45,8 @@
     
 
 </head>
-<body  onload="visualizzaGiornaleRUP()">
+<body>
+<!-- <body  onload="visualizzaGiornaleRUP()"> -->
     <div id="wrapper">
         <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
@@ -151,7 +167,7 @@ font-size: 16px;"> <a href="#" class="btn btn-danger square-btn-adjust">Vedi sto
                                                         </div>
                                                         <div class="form-group">
                                                                 <label>Immagine</label>
-                                                                <input type="file" multiple>
+                                                                <input type="file" value="upload" id="fileButton">
                                                             </div>
                                                    </div>
                                         <div class="modal-footer">

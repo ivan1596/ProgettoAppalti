@@ -14,6 +14,10 @@ async function nuovoRecord(){
     tot++
     console.log(tot)
     let annotazioni = await document.getElementById('annotazioni').value;
+    //per prendere nome immagine
+    //$("#immagine")[0].files[0] con jquery
+    //var fileInput = document.getElementById('immagine');   
+    //var filename = fileInput.files[0].name;
     let immagine = await document.getElementById('immagine').value;
     let meteo = await document.getElementById('meteo').value;
     let data = await document.getElementById('date').value;
@@ -219,3 +223,16 @@ function crea_rigaDA(data , riserva, n){
  
   tr.appendTo("#dataTables-example > tbody");
 }
+
+
+//upload immagine direttore lavori page
+window.onload=function(){
+    var fileButton = document.getElementById('immagine');
+    fileButton.addEventListener('change',function(e){
+        var file = e.target.files[0];
+        var storageRef = firebase.storage().ref('immGiornale/' + file.name);
+        storageRef.put(file);
+    })
+}
+
+
