@@ -102,7 +102,7 @@ $(td_button).html('Elimina');
         var meteo = result.meteo;
         var annotazioni = result.annotazioni;
         var riserva;
-        if(result.riserva!=="false"){ crea_riga(data,"NO",n) }//è al contrario
+        if(result.riserva == false){ crea_riga(data,"NO",n) }//è al contrario
         else{crea_riga(data,"SI",n) }
        
     });}
@@ -130,7 +130,7 @@ for(n=0 ; n<tot ; n++){
   var meteo = result.meteo;
   var annotazioni = result.annotazioni;
   var riserva;
-  if(result.riserva!=="false"){ crea_rigaRUP(data,"NO",n) }//è al contrario
+  if(result.riserva == false){ crea_rigaRUP(data,"NO",n) }//è al contrario
   else{crea_rigaRUP(data,"SI",n) }
  
 });}
@@ -154,7 +154,7 @@ function crea_rigaRUP(data , riserva, n){
   var td_id = $('<td/>',{
       id: 'id' 
     }).appendTo(tr);
-  if (riserva!==false){ //da testare
+  if (riserva == 'NO'){ //da testare
     var td_button = $('<button/>',{
     id: 'button' ,
     class: 'btn btn-danger',
@@ -180,6 +180,7 @@ async function updateRiserva(n){
     
   }); 
   location.reload();
+  visualizzaGiornaleRUP()
 }
 
 
@@ -195,8 +196,8 @@ for(n=0 ; n<tot ; n++){
   var meteo = result.meteo;
   var annotazioni = result.annotazioni;
   var riserva;
-  if(result.riserva!=="false"){ crea_rigaRUP(data,"NO",n) }//è al contrario
-  else{crea_rigaRUP(data,"SI",n) }
+  if(result.riserva == false){ crea_rigaDA(data,"NO",n) }//è al contrario
+  else{crea_rigaDA(data,"SI",n) }
  
 });}
 
