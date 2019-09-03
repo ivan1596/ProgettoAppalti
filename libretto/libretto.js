@@ -133,7 +133,7 @@ for(n=0 ; n<tot ; n++){
   var desc = result.descrizione;
   var perc = result.percentuale_completamento;
   var riserva;
-  if(result.riserva!=='false'){riserva = "NO";}
+  if(result.riserva ==false){riserva = "NO";}
   else{riserva = "SI";}
   console.log(data);
   console.log(desc);
@@ -157,7 +157,7 @@ for(n=0 ; n<tot ; n++){
   var perc = result.percentuale_completamento;
   //var chiave = result.key;
   var riserva;
-  if(result.riserva!=='false'){riserva = "NO";}
+  if(result.riserva == false){riserva = "NO";}
   else{riserva = "SI";}
   console.log(data);
   console.log(desc);
@@ -199,7 +199,7 @@ var td_id = $('<td/>',{
   id: 'id' 
 }).appendTo(tr);
 
-if (riserva!==false){ //da testare
+if (riserva=='NO'){ //da testare
   var td_button = $('<button/>',{
   id: 'button' ,
   class: 'btn btn-danger',

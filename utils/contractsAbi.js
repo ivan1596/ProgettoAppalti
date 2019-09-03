@@ -521,4 +521,4 @@ giornaleABI = [
     "type": "function",
     "signature": "0x805d4dd2"
   }
-]; 
+];
