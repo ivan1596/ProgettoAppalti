@@ -109,49 +109,6 @@ $(td_button).html('Elimina');
      
   }
 
-<<<<<<< HEAD
-
-  /* function creaModale(){
-    var divmain = '<div class="modal fade" ' +
-    'id="1"' +
-    'tabIndex="-1"'+
-    'role="dialog"'+
-    'aria-labelledby="myModalLabel"' +
-    'aria-hidden="true">'+
-    '</div>';
-    $(divmain).appendTo("#dataTables-example > tbody");
-
-    var divdialog = '<div class="modal-dialog" >' +
-    '</div>';
-    $(divdialog).appendTo(divmain);
-
-    var divcontent = '<div class="modal-content" >' +
-    '</div>';
-    $(divcontent).appendTo(divdialog);
-
-    var divheader = '<div class="modal-header" >' +
-    '</div>';
-    $(divheader).appendTo(divcontent);
-
-    var button = '<button type="button"' +
-    'class="close"' +
-    'data-dismiss="modal"' +
-    'aria-hidden="true">' +
-    '</button>';
-    $(button).appendTo(divheader);
-    
-    var h4 = '<h4 class="modal-title" id="myModalLabel">bella</h4>';
-    $(h4).appendTo(divheader);
-
-    var divbody = '<div class="modal-body" >' +
-    '</div>';
-    $(divbody).appendTo(divheader);
-
-    var p = '<p></p>';
-    $(p).appendTo(divbody);
-
-  } */
-=======
 /*
 async function getLog(){
   myContract.getPastEvents('LogRemGLRecord', {
@@ -261,4 +218,3 @@ function crea_rigaDA(data , riserva, n){
  
   tr.appendTo("#dataTables-example > tbody");
 }
->>>>>>> 715dcfd1061912158ef299222cea9e4e20db56f1
