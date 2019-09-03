@@ -15,3 +15,13 @@ function logout(){
 /*$("#href").on('click', function() {
   logout();
 });*/
+function salutaUtente(){
+  var ruolo = sessionStorage.getItem("ruolo");
+  if(ruolo == 'rup'){
+    document.getElementById("saluto").innerHTML = "Ciao RUP, cosa vuoi fare?";
+  }else if (ruolo == 'DL') {
+    document.getElementById("saluto").innerHTML = "Ciao Direttore dei Lavori, cosa vuoi fare?";
+  }else if(ruolo == 'DA'){
+    document.getElementById("saluto").innerHTML = "Ciao Ditta Appaltatrice, cosa vuoi fare?";
+  }
+}

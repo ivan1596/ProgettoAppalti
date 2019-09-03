@@ -35,7 +35,7 @@
             firebase.initializeApp(firebaseConfig);
     </script>
 </head>
-<body>
+<body onload="salutaUtente()">
     <div id="wrapper">
         <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
@@ -79,7 +79,7 @@ font-size: 16px;"> <a href="#" class="btn btn-danger square-btn-adjust">Il mio p
                 <div class="row">
                     <div class="col-md-12">
                      <h2> Home</h2>   
-                        <h5>Ciao Nome Cognome, cosa vuoi fare?</h5>
+                        <h5 id="saluto"></h5>
                     </div>
                 </div>              
                  <!-- /. ROW  -->
