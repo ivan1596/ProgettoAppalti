@@ -249,8 +249,9 @@ $('<td/>').html()
 }
 
 async function updateRiserva(n){
+  var x = new Boolean("true");
   let chiave = await myContract.methods.getRecorKeydAtIndex(n).call()
-  await myContract.methods.updateRiserva(chiave,'true').send({from:web3js.eth.defaultAccount,gas: 4500000,gasPrice:'0'}, function(error, transactionHash){
+  await myContract.methods.updateRiserva(chiave,x).send({from:web3js.eth.defaultAccount,gas: 4500000,gasPrice:'0'}, function(error, transactionHash){
     alert("Attendere il ricaricamento della pagina per vedere le modifiche.\nNon premere nulla prima della fine del caricamento!");
     
   }); 

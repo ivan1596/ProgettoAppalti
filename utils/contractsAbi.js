@@ -313,7 +313,6 @@ misureandregistroABI = [
     "signature": "0x805d4dd2"
   }
 ];
-
 giornaleABI = [
   {
     "anonymous": false,
