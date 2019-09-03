@@ -17,32 +17,78 @@ async function nuovoRecord(){
     let immagine = await document.getElementById('immagine').value;
     let meteo = await document.getElementById('meteo').value;
     let data = await document.getElementById('date').value;
+    console.log(tot,data,meteo,annotazioni)
     await myContract.methods.newRecord(tot,data,meteo,annotazioni).send({from:web3js.eth.defaultAccount,gas: 4500000,gasPrice:'0'}, function(error, transactionHash){
     alert("Attendere il ricaricamento della pagina per vedere le modifiche.\nNon premere nulla prima della fine del caricamento!");
   }); 
   location.reload();
 }
 
-function crea_riga(annotazioni , riserva){
+async function conferma(n){
+    var domanda = confirm("Sicuro di voler eliminare?");
+    if (domanda === true) {
+      await deleteRecord(n);
+    }else{
+      
+    }}
+    async function confermaRiserva(n){
+      var domanda = confirm("Sicuro di voler inserire la riserva?");
+      if (domanda === true) {
+        await updateRiserva(n);
+      }else{
+        
+      }}
+    
+    async function deleteRecord(n){
+      let chiave = await myContract.methods.getRecorKeydAtIndex(n).call()
+      await myContract.methods.remRecord(chiave).send({from:web3js.eth.defaultAccount,gas: 4500000,gasPrice:'0'}, function(error, transactionHash){
+        alert("Attendere il ricaricamento della pagina per vedere le modifiche.\nNon premere nulla prima della fine del caricamento!");
+        
+      }); 
+      location.reload();
+    }
+    
+async function visualizzaModale(n){
+        let chiave = await myContract.methods.getRecorKeydAtIndex(n).call();
+        await myContract.methods.getRecordWithKey(chiave).call((err, result) => {
+        $('#datamodal').html(result.data)
+        $('#meteomodale').html(result.meteo)
+        $('#annmod').html(result.annotazioni)});
+       
+        $('#1').modal('show');
+}
+
+
+function crea_riga(data , riserva, n){
     
     var tr =$('<tr/>', {
         id: 'tr',
     });
-    var td_annotazioni = $('<td/>',{
-        id: 'tar' 
-    }).appendTo(tr);
-    $(td_annotazioni).html(annotazioni);
+    var td_data = $('<td/>').appendTo(tr);
+    var a2 = '<a onclick="visualizzaModale('+n+')" id='+n+'>'+data+'</a>';
 
+    $(a2).appendTo(td_data);
     var td_riserva = $('<td/>',{
-        id: 'riserva' 
+        id: 'riserva'
     }).appendTo(tr);
     $(td_riserva).html(riserva);
-  
-  
+
+    var td_id = $('<td/>',{
+        id: 'id' 
+      }).appendTo(tr);
+      
+    
+  var td_button = $('<button/>',{
+    id: 'button' ,
+    class: 'btn btn-danger',
+    onclick: "conferma("+n+")"
+}).appendTo(td_id);
+$(td_button).html('Elimina');
+
     tr.appendTo("#dataTables-example > tbody");
     
   }
-  
+
   
    async function visualizzaGiornale(){
         let tot = await myContract.methods.getRecordsCount().call()
@@ -52,24 +98,18 @@ function crea_riga(annotazioni , riserva){
         let chiave = await myContract.methods.getRecorKeydAtIndex(n).call()
         await myContract.methods.getRecordWithKey(chiave).call((err, result) => { 
         console.log(result);
-        var num_ord = result.num_ord;
-        var tariffa = result.tariffa;
         var data = result.data;
-        var desc = result.descrizione;
-        var perc = result.percentuale;
-        //var chiave = result.key;
+        var meteo = result.meteo;
+        var annotazioni = result.annotazioni;
         var riserva;
-        if(result.riserva=='false'){riserva = "NO";}
-        else{riserva = "SI";}
-        console.log(data);
-        console.log(desc);
-        console.log(riserva);
-        console.log(result[0])
-        crea_riga(num_ord,tariffa,data,desc,perc/100,riserva);  
+        if(result.riserva!=="false"){ crea_riga(data,"NO",n) }//è al contrario
+        else{crea_riga(data,"SI",n) }
+       
     });}
      
   }
 
+<<<<<<< HEAD
 
   /* function creaModale(){
     var divmain = '<div class="modal fade" ' +
@@ -111,3 +151,114 @@ function crea_riga(annotazioni , riserva){
     $(p).appendTo(divbody);
 
   } */
+=======
+/*
+async function getLog(){
+  myContract.getPastEvents('LogRemGLRecord', {
+  fromBlock: 0,
+  toBlock: 'latest'
+}, function(error, events){ console.log(events); })
+}
+getLog()*/
+
+async function visualizzaGiornaleRUP(){
+  let tot = await myContract.methods.getRecordsCount().call()
+  console.log(tot)
+   
+for(n=0 ; n<tot ; n++){
+  let chiave = await myContract.methods.getRecorKeydAtIndex(n).call()
+  await myContract.methods.getRecordWithKey(chiave).call((err, result) => { 
+  console.log(result);
+  var data = result.data;
+  var meteo = result.meteo;
+  var annotazioni = result.annotazioni;
+  var riserva;
+  if(result.riserva!=="false"){ crea_rigaRUP(data,"NO",n) }//è al contrario
+  else{crea_rigaRUP(data,"SI",n) }
+ 
+});}
+
+}
+
+function crea_rigaRUP(data , riserva, n){
+    
+  var tr =$('<tr/>', {
+      id: 'tr',
+  });
+  var td_data = $('<td/>').appendTo(tr);
+  var a2 = '<a onclick="visualizzaModale('+n+')" id='+n+'>'+data+'</a>';
+
+  $(a2).appendTo(td_data);
+  var td_riserva = $('<td/>',{
+      id: 'riserva'
+  }).appendTo(tr);
+  $(td_riserva).html(riserva);
+
+  var td_id = $('<td/>',{
+      id: 'id' 
+    }).appendTo(tr);
+  if (riserva!==false){ //da testare
+    var td_button = $('<button/>',{
+    id: 'button' ,
+    class: 'btn btn-danger',
+    onclick: "confermaRiserva("+n+")"
+    }).appendTo(td_id);
+    $(td_button).html('Inserisci');
+    tr.appendTo("#dataTables-example > tbody");}
+
+  else {
+    var td_td = $('<td/>',{
+    id: 'button' 
+    }).appendTo(td_id);
+    $(td_td).html('');
+    tr.appendTo("#dataTables-example > tbody");
+  }
+}
+
+async function updateRiserva(n){
+  var x = new Boolean("true");
+  let chiave = await myContract.methods.getRecorKeydAtIndex(n).call()
+  await myContract.methods.updateRiserva(chiave,x).send({from:web3js.eth.defaultAccount,gas: 4500000,gasPrice:'0'}, function(error, transactionHash){
+    alert("Attendere il ricaricamento della pagina per vedere le modifiche.\nNon premere nulla prima della fine del caricamento!");
+    
+  }); 
+  location.reload();
+}
+
+
+async function visualizzaGiornaleDA(){
+  let tot = await myContract.methods.getRecordsCount().call()
+  console.log(tot)
+   
+for(n=0 ; n<tot ; n++){
+  let chiave = await myContract.methods.getRecorKeydAtIndex(n).call()
+  await myContract.methods.getRecordWithKey(chiave).call((err, result) => { 
+  console.log(result);
+  var data = result.data;
+  var meteo = result.meteo;
+  var annotazioni = result.annotazioni;
+  var riserva;
+  if(result.riserva!=="false"){ crea_rigaRUP(data,"NO",n) }//è al contrario
+  else{crea_rigaRUP(data,"SI",n) }
+ 
+});}
+
+}
+function crea_rigaDA(data , riserva, n){
+    
+  var tr =$('<tr/>', {
+      id: 'tr',
+  });
+  var td_data = $('<td/>').appendTo(tr);
+  var a2 = '<a onclick="visualizzaModale('+n+')" id='+n+'>'+data+'</a>';
+
+  $(a2).appendTo(td_data);
+  var td_riserva = $('<td/>',{
+      id: 'riserva'
+  }).appendTo(tr);
+  $(td_riserva).html(riserva);
+
+ 
+  tr.appendTo("#dataTables-example > tbody");
+}
+>>>>>>> 715dcfd1061912158ef299222cea9e4e20db56f1
