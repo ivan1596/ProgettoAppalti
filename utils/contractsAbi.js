@@ -350,7 +350,8 @@ giornaleABI = [
       }
     ],
     "name": "LogNewGLRecord",
-    "type": "event"
+    "type": "event",
+    "signature": "0xfa390816578ebbafe97c5b0c10029cbe611afcc0eb9901181252324878c17397"
   },
   {
     "anonymous": false,
@@ -367,7 +368,8 @@ giornaleABI = [
       }
     ],
     "name": "LogRemGLRecord",
-    "type": "event"
+    "type": "event",
+    "signature": "0x471913c04e2268294eedf5a0492b5354c45160b427c3094a78f1037c89583a78"
   },
   {
     "anonymous": false,
@@ -389,7 +391,8 @@ giornaleABI = [
       }
     ],
     "name": "LogUpdateRiservaGLRecord",
-    "type": "event"
+    "type": "event",
+    "signature": "0xf89c6a59f4436fee9da2e903c57766f68774bca50fe0c4b554b362f5ab6e1493"
   },
   {
     "constant": false,
@@ -415,7 +418,8 @@ giornaleABI = [
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function"
+    "type": "function",
+    "signature": "0xd5a45f26"
   },
   {
     "constant": false,
@@ -433,7 +437,8 @@ giornaleABI = [
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function"
+    "type": "function",
+    "signature": "0x2ac3146a"
   },
   {
     "constant": false,
@@ -447,7 +452,8 @@ giornaleABI = [
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function"
+    "type": "function",
+    "signature": "0xdccd894a"
   },
   {
     "constant": true,
@@ -478,7 +484,8 @@ giornaleABI = [
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function"
+    "type": "function",
+    "signature": "0x26afe910"
   },
   {
     "constant": true,
@@ -492,7 +499,8 @@ giornaleABI = [
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function"
+    "type": "function",
+    "signature": "0x505158bb"
   },
   {
     "constant": true,
@@ -511,6 +519,7 @@ giornaleABI = [
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function"
+    "type": "function",
+    "signature": "0x805d4dd2"
   }
 ];

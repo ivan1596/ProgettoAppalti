@@ -105,8 +105,7 @@ $(td_button).html('Elimina');
       var tariffa = result.tariffa;
       var data = result.data;
       var desc = result.descrizione;
-      var perc = result.percentuale;
-      //var chiave = result.key;
+      var perc = result.percentuale_completamento;
       var riserva;
       if(result.riserva!=='false'){riserva = "NO";}
       else{riserva = "SI";}
@@ -114,7 +113,7 @@ $(td_button).html('Elimina');
       console.log(desc);
       console.log(riserva);
       console.log(result[0])
-      crea_riga(num_ord,tariffa,data,desc,perc/100,riserva,n);  
+      crea_riga(tariffa,data,num_ord,desc,perc/100,riserva,n);  
   });}
    
 }
@@ -132,16 +131,14 @@ for(n=0 ; n<tot ; n++){
   var tariffa = result.tariffa;
   var data = result.data;
   var desc = result.descrizione;
-  var perc = result.percentuale;
-  //var chiave = result.key;
+  var perc = result.percentuale_completamento;
   var riserva;
   if(result.riserva!=='false'){riserva = "NO";}
   else{riserva = "SI";}
   console.log(data);
   console.log(desc);
   console.log(riserva);
-  console.log(result[0])
-  crea_rigaRUP(num_ord,tariffa,data,desc,perc/100,riserva,n);  
+  crea_rigaRUP(tariffa,data,num_ord,desc,perc/100,riserva,n);  
 });}
 
 }
@@ -157,7 +154,7 @@ for(n=0 ; n<tot ; n++){
   var tariffa = result.tariffa;
   var data = result.data;
   var desc = result.descrizione;
-  var perc = result.percentuale;
+  var perc = result.percentuale_completamento;
   //var chiave = result.key;
   var riserva;
   if(result.riserva!=='false'){riserva = "NO";}
@@ -165,8 +162,7 @@ for(n=0 ; n<tot ; n++){
   console.log(data);
   console.log(desc);
   console.log(riserva);
-  console.log(result[0])
-  crea_rigaDA(num_ord,tariffa,data,desc,perc/100,riserva,n);  
+  crea_rigaDA(tariffa,data,num_ord,desc,perc/100,riserva,n);  
 });}
 
 }

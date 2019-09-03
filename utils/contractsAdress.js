@@ -1,3 +1,3 @@
-const misureandregistroAdress = "0xFD59492aA863497221eC18C8dE7Ead1Ed56270F8";
-const giornaleAdress = "0x027692c7eBdc81c590250E615AB571A0d14eFf2d";
+const misureandregistroAdress = "0x8a5E2a6343108bABEd07899510fb42297938D41F";
+const giornaleAdress = "0x1349F3e1B8D71eFfb47B840594Ff27dA7E603d17";
 
