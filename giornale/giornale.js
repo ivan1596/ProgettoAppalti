@@ -181,4 +181,40 @@ async function updateRiserva(n){
   }); 
   location.reload();
 }
-  
+
+
+async function visualizzaGiornaleDA(){
+  let tot = await myContract.methods.getRecordsCount().call()
+  console.log(tot)
+   
+for(n=0 ; n<tot ; n++){
+  let chiave = await myContract.methods.getRecorKeydAtIndex(n).call()
+  await myContract.methods.getRecordWithKey(chiave).call((err, result) => { 
+  console.log(result);
+  var data = result.data;
+  var meteo = result.meteo;
+  var annotazioni = result.annotazioni;
+  var riserva;
+  if(result.riserva!=="false"){ crea_rigaRUP(data,"NO",n) }//è al contrario
+  else{crea_rigaRUP(data,"SI",n) }
+ 
+});}
+
+}
+function crea_rigaDA(data , riserva, n){
+    
+  var tr =$('<tr/>', {
+      id: 'tr',
+  });
+  var td_data = $('<td/>').appendTo(tr);
+  var a2 = '<a onclick="visualizzaModale('+n+')" id='+n+'>'+data+'</a>';
+
+  $(a2).appendTo(td_data);
+  var td_riserva = $('<td/>',{
+      id: 'riserva'
+  }).appendTo(tr);
+  $(td_riserva).html(riserva);
+
+ 
+  tr.appendTo("#dataTables-example > tbody");
+}

@@ -145,6 +145,32 @@ for(n=0 ; n<tot ; n++){
 });}
 
 }
+async function visualizzaLibrettoDA(){
+  let tot = await myContract.methods.getRecordsCount().call()
+  console.log(tot)
+   
+for(n=0 ; n<tot ; n++){
+  let chiave = await myContract.methods.getRecorKeydAtIndex(n).call()
+  await myContract.methods.getRecordWithKey(chiave).call((err, result) => { 
+  console.log(result);
+  var num_ord = result.num_ord;
+  var tariffa = result.tariffa;
+  var data = result.data;
+  var desc = result.descrizione;
+  var perc = result.percentuale;
+  //var chiave = result.key;
+  var riserva;
+  if(result.riserva!=='false'){riserva = "NO";}
+  else{riserva = "SI";}
+  console.log(data);
+  console.log(desc);
+  console.log(riserva);
+  console.log(result[0])
+  crea_rigaDA(num_ord,tariffa,data,desc,perc/100,riserva,n);  
+});}
+
+}
+
 
 function crea_rigaRUP(num_ord, tariffa, data, desc, percentuale , riserva, n){
     
@@ -193,6 +219,36 @@ else {
   $(td_td).html('');
   tr.appendTo("#dataTables-example > tbody");
 }
+  
+}
+
+function crea_rigaDA(num_ord, tariffa, data, desc, percentuale , riserva, n){
+    
+  var tr =$('<tr/>', {
+      id: 'tr',
+  });  
+  var tariffaComplete = num_ord + '<br>' + tariffa + '<br>' + data;
+  var td_tariffa = $('<td/>',{
+      id: 'tar' 
+  }).appendTo(tr);
+  $(td_tariffa).html(tariffaComplete);
+
+  var td_des = $('<td/>',{
+      id: 'des' 
+  }).appendTo(tr);
+  $(td_des).html(desc);
+
+  var td_perc = $('<td/>',{
+      id: 'neg' 
+  }).appendTo(tr);
+  $(td_perc).html(percentuale);
+
+  var td_riserva = $('<td/>',{
+      id: 'riserva' 
+  }).appendTo(tr);
+  $(td_riserva).html(riserva);
+$('<td/>').html()
+  tr.appendTo("#dataTables-example > tbody");
   
 }
 
