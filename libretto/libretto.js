@@ -109,11 +109,11 @@ $(td_button).html('Elimina');
       var riserva;
       if(result.riserva!=='false'){riserva = "NO";}
       else{riserva = "SI";}
-      console.log(data);
+      /*console.log(data);
       console.log(desc);
-      console.log(riserva);
-      console.log(result[0])
-      crea_riga(tariffa,data,num_ord,desc,perc/100,riserva,n);  
+      console.log(riserva);*/
+      crea_riga(num_ord, tariffa, data, desc, perc/100 , riserva, n);  
+      
   });}
    
 }
