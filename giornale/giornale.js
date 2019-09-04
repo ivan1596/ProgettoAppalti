@@ -113,14 +113,14 @@ $(td_button).html('Elimina');
      
   }
 
-/*
+
 async function getLog(){
-  myContract.getPastEvents('LogRemGLRecord', {
+  myContract.getPastEvents('LogNewGLRecord', {
   fromBlock: 0,
   toBlock: 'latest'
 }, function(error, events){ console.log(events); })
 }
-getLog()*/
+getLog()
 
 async function visualizzaGiornaleRUP(){
   let tot = await myContract.methods.getRecordsCount().call()

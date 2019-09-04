@@ -313,6 +313,7 @@ misureandregistroABI = [
     "signature": "0x805d4dd2"
   }
 ];
+
 giornaleABI = [
   {
     "anonymous": false,
@@ -479,6 +480,152 @@ giornaleABI = [
       {
         "name": "riserva",
         "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function",
+    "signature": "0x26afe910"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "getRecordsCount",
+    "outputs": [
+      {
+        "name": "count",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function",
+    "signature": "0x505158bb"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "index",
+        "type": "uint256"
+      }
+    ],
+    "name": "getRecorKeydAtIndex",
+    "outputs": [
+      {
+        "name": "key",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function",
+    "signature": "0x805d4dd2"
+  }
+];
+
+pagamentiABI =  [
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "name": "sender",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "key",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "data",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "name": "importo",
+        "type": "uint128"
+      }
+    ],
+    "name": "LogNewPERecord",
+    "type": "event",
+    "signature": "0xceb5ff3eb8f5b879c89142ac8860868ee8c527ddffdfb22b92d3183bb6a367f5"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "name": "sender",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "key",
+        "type": "uint256"
+      }
+    ],
+    "name": "LogRemPERecord",
+    "type": "event",
+    "signature": "0x7c5b44f97c18bfa4e65c83f41504138c2ffd6869dc98417ef1886a706d39df80"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "key",
+        "type": "uint256"
+      },
+      {
+        "name": "data",
+        "type": "string"
+      },
+      {
+        "name": "importo",
+        "type": "uint128"
+      }
+    ],
+    "name": "newRecord",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function",
+    "signature": "0xca55221c"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "key",
+        "type": "uint256"
+      }
+    ],
+    "name": "remRecord",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function",
+    "signature": "0xdccd894a"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "key",
+        "type": "uint256"
+      }
+    ],
+    "name": "getRecordWithKey",
+    "outputs": [
+      {
+        "name": "data",
+        "type": "string"
+      },
+      {
+        "name": "importo",
+        "type": "uint128"
       }
     ],
     "payable": false,
