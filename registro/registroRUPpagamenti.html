@@ -24,6 +24,21 @@
     <script>
         var web3js = new Web3(new Web3.providers.HttpProvider('http://localhost:22000'));
     </script>
+    <script>
+        // Your web app's Firebase configuration
+        
+        var firebaseConfig = {
+            apiKey: "AIzaSyCSZkGy0MnhJ6RdEdaCjObelHariS-xeI4",
+            authDomain: "easyappalto-5d310.firebaseapp.com",
+            databaseURL: "https://easyappalto-5d310.firebaseio.com",
+            projectId: "easyappalto-5d310",
+            storageBucket: "easyappalto-5d310.appspot.com",
+            messagingSenderId: "787583540199",
+            appId: "1:787583540199:web:f276d10bf841e1ff"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
     <script type="text/javascript" src="./../utils/contractsAbi.js"></script>
     <script type="text/javascript" src="./../utils/contractsAdress.js"></script>
     <script src="registro.js"></script>
@@ -38,7 +53,7 @@
   <div style="color: white;
 padding: 15px 50px 5px 50px;
 float: right;
-font-size: 16px;"><a href="../registro/registroRUP.html" class="btn btn-danger square-btn-adjust">Visualizza registro</a><a href="../login/login.html" class="btn btn-danger square-btn-adjust">Logout</a> </div>
+font-size: 16px;"><a href="../registro/registroRUP.html" class="btn btn-danger square-btn-adjust">Visualizza registro</a><a class="btn btn-danger square-btn-adjust" onclick="logout()">Logout</a> </div>
         </nav>   
            <!-- /. NAV TOP  -->
                 <nav class="navbar-default navbar-side" role="navigation">

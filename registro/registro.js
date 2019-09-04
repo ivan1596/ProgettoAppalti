@@ -174,3 +174,12 @@ function getData(){
         );
     }
 }*/
+
+//funzione per il logout
+function logout(){
+    firebase.auth().signOut().then(function() {
+        window.location.href = '../login/login.html';
+      }).catch(function(error) {
+        window.alert(error);
+      });
+  }
