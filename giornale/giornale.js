@@ -19,12 +19,14 @@ async function nuovoRecord(){
     //$("#immagine")[0].files[0] con jquery
     //var fileInput = document.getElementById('immagine');   
     //var filename = fileInput.files[0].name;
-    let fileImmagine = await document.getElementById('immagine').value;
+    let fileImmagine = await document.getElementById('immagine');
     let immagine = fileImmagine.files[0].name;
+    console.log(immagine)
+    console.log(fileImmagine)
     let meteo = await document.getElementById('meteo').value;
     let data = await document.getElementById('date').value;
     console.log(tot,data,meteo,annotazioni)
-    await myContract.methods.newRecord(tot,data,meteo,annotazioni).send({from:web3js.eth.defaultAccount,gas: 4500000,gasPrice:'0'}, function(error, transactionHash){
+    await myContract.methods.newRecord(tot,data,meteo,annotazioni,immagine).send({from:web3js.eth.defaultAccount,gas: 4500000,gasPrice:'0'}, function(error, transactionHash){
     alert("Attendere il ricaricamento della pagina per vedere le modifiche.\nNon premere nulla prima della fine del caricamento!");
   }); 
   location.reload();

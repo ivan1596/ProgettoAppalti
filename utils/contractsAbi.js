@@ -402,11 +402,16 @@ giornaleABI = [
         "indexed": false,
         "name": "riserva",
         "type": "bool"
+      },
+      {
+        "indexed": false,
+        "name": "immagine",
+        "type": "string"
       }
     ],
     "name": "LogNewGLRecord",
     "type": "event",
-    "signature": "0xfa390816578ebbafe97c5b0c10029cbe611afcc0eb9901181252324878c17397"
+    "signature": "0x32d681102e860d8de75267f96f1104cd387b3876d5f9a36b84d4802560ea21ae"
   },
   {
     "anonymous": false,
@@ -467,6 +472,10 @@ giornaleABI = [
       {
         "name": "annotazioni",
         "type": "string"
+      },
+      {
+        "name": "immagine",
+        "type": "string"
       }
     ],
     "name": "newRecord",
@@ -474,7 +483,7 @@ giornaleABI = [
     "payable": false,
     "stateMutability": "nonpayable",
     "type": "function",
-    "signature": "0xd5a45f26"
+    "signature": "0x8892143b"
   },
   {
     "constant": false,
@@ -535,6 +544,10 @@ giornaleABI = [
       {
         "name": "riserva",
         "type": "bool"
+      },
+      {
+        "name": "immagine",
+        "type": "string"
       }
     ],
     "payable": false,
@@ -578,7 +591,7 @@ giornaleABI = [
     "signature": "0x805d4dd2"
   }
 ];
-pagamentiABI =[
+pagamentiABI = [
   {
     "anonymous": false,
     "inputs": [
