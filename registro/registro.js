@@ -3,7 +3,7 @@ if(utente == null){
     alert("Effettua LogIn");
     window.location.href = '../login/login.html';
 }
- var totDebito = 0
+ var totDebito = 0;
 
 var Abi = misureandregistroABI;
 var address = misureandregistroAdress;
@@ -27,13 +27,18 @@ for(n=0 ; n<tot ; n++){
     var prezzo_unitario = (result.prezzo_unitario/100);
     var debito = (result.debito/1000000)
     totDebito+=debito
+    
     crea_riga(num_ord, tariffa, data, desc, perc , prezzo_unitario , debito);  }
     else {}
 });}
-
+if(totDebito == 0){
+    $("#bottonePaga").prop("disabled",true)
+    $("#bottonePaga").html('Hai già effettuato il pagamento')
+}
+else{
 $("#bottonePaga").html('Effettua pagamento di € '+totDebito);
 $("#bottonePaga").attr('onclick','confermaPagamento('+totDebito+','+(tot)+')');
-
+}
 }
 
 function crea_riga(num_ord, tariffa, data, desc, perc , prezzo_unitario , debito){
@@ -67,11 +72,6 @@ function crea_riga(num_ord, tariffa, data, desc, perc , prezzo_unitario , debito
         id: 'debito' 
     }).appendTo(tr);
     $(td_debito).html(debito);
-
-    var td_pagamento = $('<td/>',{
-        id: 'pagamento' 
-    }).appendTo(tr);
-    $(td_pagamento).html('');
           
     $('<td/>').html()
     tr.appendTo("#dataTables-example > tbody");
@@ -84,7 +84,9 @@ function crea_riga(num_ord, tariffa, data, desc, perc , prezzo_unitario , debito
     let tot = await myContractPagamenti.methods.getRecordsCount().call()
     tot++
     var data = getData()
-    await myContractPagamenti.methods.newRecord(tot,data,totDebito/100).send({from:web3js.eth.defaultAccount,gas: 4500000,gasPrice:'0'}, function(error, transactionHash){});
+    await myContractPagamenti.methods.newRecord(tot,data,totDebito*100).send({from:web3js.eth.defaultAccount,gas: 4500000,gasPrice:'0'}, function(error, transactionHash){
+        alert("Attendere il ricaricamento della pagina per vedere le modifiche.\nNon premere nulla prima della fine del caricamento!");
+    });
     await updatePagamento(last)
     location.reload();
 
@@ -92,19 +94,10 @@ function crea_riga(num_ord, tariffa, data, desc, perc , prezzo_unitario , debito
   async function confermaPagamento(totDebito,last){
     var domanda = confirm("Sicuro di voler pagare € "+totDebito+" ?");
     if (domanda === true) {
+        
       await pagamento(totDebito,last);
     }else{
     }}
-
-async function getPagamenti(){
-    let tot = await myContractPagamenti.methods.getRecordsCount().call()
-  for(n=0 ; n<tot ; n++){
-      let chiave = await myContract.methods.getRecorKeydAtIndex(n).call()
-      await myContract.methods.getRecordWithKey(chiave).call((err, result) => { 
-      console.log("--------"+result.importo);
-      })
-}}
-
 
 async function updatePagamento(last){
     var x = new Boolean("true");
@@ -174,3 +167,39 @@ function getData(){
         );
     }
 }*/
+
+
+
+//FUNZIONI registroRUPpagamenti
+
+async function visualizzaPagamenti(){
+    let tot = await myContractPagamenti.methods.getRecordsCount().call()
+  for(n=0 ; n<tot ; n++){
+      let chiave = await myContract.methods.getRecorKeydAtIndex(n).call()
+      await myContractPagamenti.methods.getRecordWithKey(chiave).call((err, result) => { 
+          console.log(result)
+      var data = result.data;
+      var importo = result.importo;
+      crea_rigaPagamenti(data,importo/100)
+      })
+}}
+
+function crea_rigaPagamenti(data,importo){
+
+    var tr =$('<tr/>', {
+        id: 'tr',
+    });  
+
+    var td_data = $('<td/>',{
+        id: 'data' 
+    }).appendTo(tr);
+    $(td_data).html(data);
+  
+    var td_importo = $('<td/>',{
+        id: 'importo' 
+    }).appendTo(tr);
+    $(td_importo).html(importo);
+
+    $('<td/>').html()
+    tr.appendTo("#dataTables-example > tbody");
+  }

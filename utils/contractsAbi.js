@@ -578,7 +578,7 @@ giornaleABI = [
     "signature": "0x805d4dd2"
   }
 ];
-pagamentiABI =[
+pagamentiABI = [
   {
     "anonymous": false,
     "inputs": [
