@@ -168,7 +168,6 @@ function getData(){
     }
 }*/
 
-<<<<<<< HEAD
 
 
 //FUNZIONI registroRUPpagamenti
@@ -203,7 +202,7 @@ function crea_rigaPagamenti(data,importo){
 
     $('<td/>').html()
     tr.appendTo("#dataTables-example > tbody");
-=======
+}
 //funzione per il logout
 function logout(){
     firebase.auth().signOut().then(function() {
@@ -211,5 +210,4 @@ function logout(){
       }).catch(function(error) {
         window.alert(error);
       });
->>>>>>> fc6666e8ed9b2bad5f6c58cedabcf0c482533885
   }
