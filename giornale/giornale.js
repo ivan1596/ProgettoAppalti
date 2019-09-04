@@ -251,6 +251,8 @@ function uploadImage(){
 }
 
 function downoloadImg(nomeImmagine){
+
+  var storageRef = firebase.storage().ref();
   // Creare una referenza sul file che vogliamo scaricare
   var starsRef = storageRef.child('immGiornale/'+ nomeImmagine);
 
