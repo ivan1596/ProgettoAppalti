@@ -242,6 +242,7 @@ function crea_rigaDA(data , riserva, n){
 
 function uploadImage(){
   var fileButton = document.getElementById('immagine');
+  var file = fileButton.files[0];
   var filename = fileButton.files[0].name;
   var storageRef = firebase.storage().ref('immGiornale/' + filename);
   storageRef.put(file);
