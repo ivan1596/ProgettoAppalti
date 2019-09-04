@@ -51,11 +51,16 @@ misureandregistroABI = [
         "indexed": false,
         "name": "riserva",
         "type": "bool"
+      },
+      {
+        "indexed": false,
+        "name": "pagato",
+        "type": "bool"
       }
     ],
     "name": "LogNewLDMRecord",
     "type": "event",
-    "signature": "0x297644f69d3b815d4a58cd95f1f1debf34068cfa2a385c451d0fc7c749f4a984"
+    "signature": "0x8b3359d3248309e596df449e71c1f631713055b215998a0f01b4bdbed595e8e6"
   },
   {
     "anonymous": false,
@@ -109,11 +114,16 @@ misureandregistroABI = [
         "indexed": false,
         "name": "riserva",
         "type": "bool"
+      },
+      {
+        "indexed": false,
+        "name": "pagato",
+        "type": "bool"
       }
     ],
     "name": "LogUpdateLDMRecord",
     "type": "event",
-    "signature": "0xcdd8da1749e9b542b0a5735755f724f649beacebddd1df6228ed772927268d1d"
+    "signature": "0xee803ae5d9885646861d0c1317c73490b8082fb6974a0a172b15787e424fd2a1"
   },
   {
     "anonymous": false,
@@ -155,6 +165,29 @@ misureandregistroABI = [
     "name": "LogUpdateRiservaLDMRecord",
     "type": "event",
     "signature": "0x56f7ed57e35ae3e1a6510c34796927eeea9853b7e4b39d896b0333b1c47988e1"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "name": "sender",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "key",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "pagato",
+        "type": "bool"
+      }
+    ],
+    "name": "LogUpdatePagatoLDMRecord",
+    "type": "event",
+    "signature": "0xbfc42eb8b59e4469d600ab394b728f1f01573a5b7c090128f24ebff21fe72544"
   },
   {
     "constant": false,
@@ -220,6 +253,25 @@ misureandregistroABI = [
       {
         "name": "key",
         "type": "uint256"
+      },
+      {
+        "name": "pagato",
+        "type": "bool"
+      }
+    ],
+    "name": "updatePagamento",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function",
+    "signature": "0xcdced40e"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "key",
+        "type": "uint256"
       }
     ],
     "name": "remRecord",
@@ -269,6 +321,10 @@ misureandregistroABI = [
       },
       {
         "name": "riserva",
+        "type": "bool"
+      },
+      {
+        "name": "pagato",
         "type": "bool"
       }
     ],
@@ -479,6 +535,151 @@ giornaleABI = [
       {
         "name": "riserva",
         "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function",
+    "signature": "0x26afe910"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "getRecordsCount",
+    "outputs": [
+      {
+        "name": "count",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function",
+    "signature": "0x505158bb"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "index",
+        "type": "uint256"
+      }
+    ],
+    "name": "getRecorKeydAtIndex",
+    "outputs": [
+      {
+        "name": "key",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function",
+    "signature": "0x805d4dd2"
+  }
+];
+pagamentiABI =[
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "name": "sender",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "key",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "data",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "name": "importo",
+        "type": "uint128"
+      }
+    ],
+    "name": "LogNewPERecord",
+    "type": "event",
+    "signature": "0xceb5ff3eb8f5b879c89142ac8860868ee8c527ddffdfb22b92d3183bb6a367f5"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "name": "sender",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "key",
+        "type": "uint256"
+      }
+    ],
+    "name": "LogRemPERecord",
+    "type": "event",
+    "signature": "0x7c5b44f97c18bfa4e65c83f41504138c2ffd6869dc98417ef1886a706d39df80"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "key",
+        "type": "uint256"
+      },
+      {
+        "name": "data",
+        "type": "string"
+      },
+      {
+        "name": "importo",
+        "type": "uint128"
+      }
+    ],
+    "name": "newRecord",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function",
+    "signature": "0xca55221c"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "key",
+        "type": "uint256"
+      }
+    ],
+    "name": "remRecord",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function",
+    "signature": "0xdccd894a"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "key",
+        "type": "uint256"
+      }
+    ],
+    "name": "getRecordWithKey",
+    "outputs": [
+      {
+        "name": "data",
+        "type": "string"
+      },
+      {
+        "name": "importo",
+        "type": "uint128"
       }
     ],
     "payable": false,
