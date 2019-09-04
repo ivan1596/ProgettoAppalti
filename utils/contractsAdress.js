@@ -1,3 +1,3 @@
-const misureandregistroAdress = "0x9AC8A5eFC282aFab3B2a7286704F232767645733";
-const giornaleAdress = "0xe273Fd8A6dEb07c4BD7226e0ba05724DCB4bd38A";
-const pagamentiAdress = "0xcB2299eA32fC5Db76B638BEe5bC081BAab2F21d0";
+const misureandregistroAdress = "0x685e0b659C3be1c465d5BB37C03E6263EfcAE25B";
+const giornaleAdress = "0x10ae69385C79eF3Eb815AC008A7013D6878f1d38";
+const pagamentiAdress = "0x18a8Dbb6a80ae7acc264Ef508Cad55403D2E973e";

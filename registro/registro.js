@@ -3,7 +3,7 @@ if(utente == null){
     alert("Effettua LogIn");
     window.location.href = '../login/login.html';
 }
-
+ var totDebito = 0
 
 var Abi = misureandregistroABI;
 var address = misureandregistroAdress;
@@ -12,19 +12,12 @@ var myContract = new web3js.eth.Contract(Abi, address, { gas: 100000000000000000
 var myContractPagamenti = new web3js.eth.Contract(pagamentiABI, pagamentiAdress, { gas: 10000000000000000000, gasPrice: '20000000'});
 
 async function visualizzaRegistro(){
-    var dataLastP
-    let totP = await myContractPagamenti.methods.getRecordsCount().call()
-    let chiaveP = await myContractPagamenti.methods.getRecorKeydAtIndex(totP-1).call()
-    await myContractPagamenti.methods.getRecordWithKey(chiaveP).call((err, result) => {
-        dataLastP = result.data
-     })
-
     let tot = await myContract.methods.getRecordsCount().call()
-    var last = tot-1
-    var totDebito = 0
 for(n=0 ; n<tot ; n++){
     let chiave = await myContract.methods.getRecorKeydAtIndex(n).call()
-    await myContract.methods.getRecordWithKey(chiave).call((err, result) => { 
+    await myContract.methods.getRecordWithKey(chiave).call((err, result) => {
+        console.log(result.pagato)
+    if(result.pagato == false){     
     console.log(result);
     var num_ord = result.num_ord;
     var tariffa = result.tariffa;
@@ -34,18 +27,16 @@ for(n=0 ; n<tot ; n++){
     var prezzo_unitario = (result.prezzo_unitario/100);
     var debito = (result.debito/1000000)
     totDebito+=debito
-    
-    crea_riga(num_ord, tariffa, data, desc, perc , prezzo_unitario , debito , n , totDebito, last , dataLastP);  
-    
+    crea_riga(num_ord, tariffa, data, desc, perc , prezzo_unitario , debito);  }
+    else {}
 });}
- 
+
+$("#bottonePaga").html('Effettua pagamento di € '+totDebito);
+$("#bottonePaga").attr('onclick','confermaPagamento('+totDebito+','+(tot)+')');
+
 }
 
-function crea_riga(num_ord, tariffa, data, desc, perc , prezzo_unitario , debito, n , totDebito , last , dataLastP){
-    
-    var confrontoDate = dates.compare(data,dataLastP)       //-1 se a<b
-
-
+function crea_riga(num_ord, tariffa, data, desc, perc , prezzo_unitario , debito){
 
     var tr =$('<tr/>', {
         id: 'tr',
@@ -71,67 +62,39 @@ function crea_riga(num_ord, tariffa, data, desc, perc , prezzo_unitario , debito
     }).appendTo(tr);
     $(td_prezzo).html(prezzo_unitario);
 
-    if(debito > 0 && confrontoDate == -1){
-        var td_debito = $('<td/>',{
-            id: 'debito' 
-        }).appendTo(tr);
-        $(td_debito).html(debito);
-        if(n == last){
-            var td_id = $('<td/>',{
-            id: 'id' 
-            }).appendTo(tr);
-            var td_button = $('<button/>',{
-            id: 'button' ,
-            class: 'btn btn-danger',
-            onclick: "confermaPagamento("+totDebito+")"
-            }).appendTo(td_id);
-            $(td_button).html('Paga');
-            }
-        $('<td/>').html()
-        tr.appendTo("#dataTables-example > tbody");}
-    else{
-        var td_debito = $('<td/>',{
-            id: 'debito' 
-        }).appendTo(tr);
-        $(td_debito).html('0');
+    
+    var td_debito = $('<td/>',{
+        id: 'debito' 
+    }).appendTo(tr);
+    $(td_debito).html(debito);
 
-        var td_pagamento = $('<td/>',{
-            id: 'pagamento' 
-        }).appendTo(tr);
-        $(td_pagamento).html('Pagamento');
-        $('<td/>').html()
-        tr.appendTo("#dataTables-example > tbody");}
+    var td_pagamento = $('<td/>',{
+        id: 'pagamento' 
+    }).appendTo(tr);
+    $(td_pagamento).html('');
+          
+    $('<td/>').html()
+    tr.appendTo("#dataTables-example > tbody");
+
+
+
   }
 
-  async function pagamento(importo){
+  async function pagamento(totDebito,last){
     let tot = await myContractPagamenti.methods.getRecordsCount().call()
     tot++
-    console.log(tot)
     var data = getData()
-
-    await myContractPagamenti.methods.newRecord(tot,data,importo/100).send({from:web3js.eth.defaultAccount,gas: 4500000,gasPrice:'0'}, function(error, transactionHash){
-      alert("Attendere il ricaricamento della pagina per vedere le modifiche.\nNon premere nulla prima della fine del caricamento!");    
-    }); 
+    await myContractPagamenti.methods.newRecord(tot,data,totDebito/100).send({from:web3js.eth.defaultAccount,gas: 4500000,gasPrice:'0'}, function(error, transactionHash){});
+    await updatePagamento(last)
     location.reload();
 
   }
-  async function confermaPagamento(totDebito){
+  async function confermaPagamento(totDebito,last){
     var domanda = confirm("Sicuro di voler pagare € "+totDebito+" ?");
     if (domanda === true) {
-      await pagamento(totDebito);
+      await pagamento(totDebito,last);
     }else{
     }}
-
-
-
-function getData(){
-    var today = new Date();
-    var dd = String(today.getDate()).padStart(2, '0');
-    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-    var yyyy = today.getFullYear();
-    today = yyyy + '-' + mm + '-' + dd;
-    return today
-}
 
 async function getPagamenti(){
     let tot = await myContractPagamenti.methods.getRecordsCount().call()
@@ -143,8 +106,24 @@ async function getPagamenti(){
 }}
 
 
+async function updatePagamento(last){
+    var x = new Boolean("true");
+    for(i=0;i<last;i++){
+    let chiave = await myContract.methods.getRecorKeydAtIndex(i).call()
+    await myContract.methods.updatePagamento(chiave,x).send({from:web3js.eth.defaultAccount,gas: 4500000,gasPrice:'0'}, function(error, transactionHash){  }); }
+    location.reload();
+  }
 
-var dates = {
+function getData(){
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+
+    today = yyyy + '-' + mm + '-' + dd;
+    return today
+}
+/*var dates = {
     convert:function(d) {
         // Converts the date in d to a date-object. The input can be:
         //   a date object: returned without modification
@@ -194,4 +173,4 @@ var dates = {
             NaN
         );
     }
-}
+}*/
