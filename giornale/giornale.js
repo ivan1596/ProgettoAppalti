@@ -10,15 +10,17 @@ web3js.eth.defaultAccount = '0xed9d02e382b34818e88B88a309c7fe71E65f419d';
 var myContract = new web3js.eth.Contract(Abi, address, { gas: 10000000000000000000, gasPrice: '20000000'});
 
 async function nuovoRecord(){
-    let tot = await myContract.methods.getRecordsCount().call()
+    let tot = await myContract.methods.getRecordsCount().call();
     tot++
     console.log(tot)
+    uploadImage();
     let annotazioni = await document.getElementById('annotazioni').value;
     //per prendere nome immagine
     //$("#immagine")[0].files[0] con jquery
     //var fileInput = document.getElementById('immagine');   
     //var filename = fileInput.files[0].name;
-    let immagine = await document.getElementById('immagine').value;
+    let fileImmagine = await document.getElementById('immagine').value;
+    let immagine = fileImmagine.files[0].name;
     let meteo = await document.getElementById('meteo').value;
     let data = await document.getElementById('date').value;
     console.log(tot,data,meteo,annotazioni)
@@ -55,9 +57,12 @@ async function conferma(n){
 async function visualizzaModale(n){
         let chiave = await myContract.methods.getRecorKeydAtIndex(n).call();
         await myContract.methods.getRecordWithKey(chiave).call((err, result) => {
-        $('#datamodal').html(result.data)
-        $('#meteomodale').html(result.meteo)
-        $('#annmod').html(result.annotazioni)});
+          $('#datamodal').html(result.data);
+          $('#meteomodale').html(result.meteo);
+          $('#annmod').html(result.annotazioni);
+          var img = result.immagine;
+          downoloadImg(img);
+        });
        
         $('#1').modal('show');
 }
@@ -86,8 +91,8 @@ function crea_riga(data , riserva, n){
     id: 'button' ,
     class: 'btn btn-danger',
     onclick: "conferma("+n+")"
-}).appendTo(td_id);
-$(td_button).html('Elimina');
+  }).appendTo(td_id);
+  $(td_button).html('Elimina');
 
     tr.appendTo("#dataTables-example > tbody");
     
@@ -226,13 +231,50 @@ function crea_rigaDA(data , riserva, n){
 
 
 //upload immagine direttore lavori page
-window.onload=function(){
+/* window.onload=function(){
     var fileButton = document.getElementById('immagine');
     fileButton.addEventListener('change',function(e){
         var file = e.target.files[0];
         var storageRef = firebase.storage().ref('immGiornale/' + file.name);
         storageRef.put(file);
     })
+} */
+
+function uploadImage(){
+  var fileButton = document.getElementById('immagine');
+  var filename = fileButton.files[0].name;
+  var storageRef = firebase.storage().ref('immGiornale/' + filename);
+  storageRef.put(file);
 }
 
+function downoloadImg(nomeImmagine){
+  // Creare una referenza sul file che vogliamo scaricare
+  var starsRef = storageRef.child('immGiornale/'+ nomeImmagine);
+
+  // Prendi il link per il download
+  starsRef.getDownloadURL().then(function(url) {
+  // Insert url into an <img> tag to "download"
+  $('#imgmodale').html(url);
+  }).catch(function(error) {
+
+  switch (error.code) {
+    case 'storage/object-not-found':
+      alert("Il file non esiste");
+      break;
+
+    case 'storage/unauthorized':
+      alert("Non hai il permesso per accedere al file");
+      break;
+
+    case 'storage/canceled':
+      alert("File cancellato");
+      break;
+
+    case 'storage/unknown':
+      alert("Errore nella comunicazione col server");
+      break;
+  }
+});
+
+}
 
