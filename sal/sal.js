@@ -37,3 +37,17 @@ async function visualizzaPagamenti(){
     
     })
 }}*/
+
+function getStorico(){
+ 
+  firebase.firestore().collection('storicopagamenti').doc("LA").get().then( (docRef ) => {    //su doc il nome che hai messo di là
+    //console.log(docRef.data());
+    //console.log(docRef);
+    var data = docRef.data().data;
+    //console.log(ruolo);
+   
+  }).catch( (error) => {
+    console.log(error);
+   })
+  
+}

@@ -212,3 +212,17 @@ function logout(){
         window.alert(error);
       });
   }
+
+  //set item su firebase
+function aggiungiStorico(){
+    firebase.firestore().collection("storicopagamenti").doc("LA").set({ //su doc metti il nome del record che vuoi creare
+        data: "2016",
+        
+    })
+    .then(function() {
+        console.log("Document successfully written!");
+    })
+    .catch(function(error) {
+        console.error("Error writing document: ", error);
+    });
+}
