@@ -138,7 +138,8 @@ for(n=0 ; n<tot ; n++){
   console.log(data);
   console.log(desc);
   console.log(riserva);
-  crea_rigaRUP(tariffa,data,num_ord,desc,perc/100,riserva,n);  
+  //crea_rigaRUP(tariffa,data,num_ord,desc,perc/100,riserva,n);  
+  crea_rigaRUP(num_ord, tariffa, data, desc, perc/100 , riserva, n)
 });}
 
 }
@@ -162,7 +163,8 @@ for(n=0 ; n<tot ; n++){
   console.log(data);
   console.log(desc);
   console.log(riserva);
-  crea_rigaDA(tariffa,data,num_ord,desc,perc/100,riserva,n);  
+  //crea_rigaDA(tariffa,data,num_ord,desc,perc/100,riserva,n);  
+  crea_rigaDA(num_ord, tariffa, data, desc, perc/100 , riserva, n)
 });}
 
 }
@@ -258,6 +260,24 @@ async function updateRiserva(n){
   location.reload();
 }
   
+
+//funzione per controllo form
+function validazioneForm() {
+  let num_ord = document.getElementById('numord').value;
+  let tariffa = document.getElementById('tariffa').value;
+  let data =  document.getElementById('date').value;
+  let descrizione = document.getElementById('deslav').value;
+  let prezzo_unitario = document.getElementById('prezzo_unitario').value;
+  let percentuale = document.getElementById('percentuale').value;
+  if(num_ord == "" || data == "" || tariffa == "" || descrizione == "" || prezzo_unitario == "" || percentuale == ""){
+    alert("Inserire tutti i campi")
+  }else if(isNaN(prezzo_unitario) || isNaN(percentuale) || percentuale < 0 || percentuale > 100){
+     alert("Inserire valori numerici in prezzo e percentuale e/o inserire percentuale tra 0 a 100");
+  }else{
+    nuovoRecord();
+  }
+
+}
 
 //funzione per il logout
 function logout(){
