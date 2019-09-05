@@ -272,7 +272,7 @@ function validazioneForm() {
   if(num_ord == "" || data == "" || tariffa == "" || descrizione == "" || prezzo_unitario == "" || percentuale == ""){
     alert("Inserire tutti i campi")
   }else if(isNaN(prezzo_unitario) || isNaN(percentuale) || percentuale < 0 || percentuale > 100){
-     alert("Inserire valori numerici in prezzo e percentuale e/o inserire percentuale tra 0 a 100");
+     alert("Inserire valori numerici in prezzo e percentuale ed inserire percentuale tra 0 a 100");
   }else{
     nuovoRecord();
   }

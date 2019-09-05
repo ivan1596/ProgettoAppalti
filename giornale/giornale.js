@@ -10,17 +10,18 @@ web3js.eth.defaultAccount = '0xed9d02e382b34818e88B88a309c7fe71E65f419d';
 var myContract = new web3js.eth.Contract(Abi, address, { gas: 10000000000000000000, gasPrice: '20000000'});
 
 async function nuovoRecord(){
-    let tot = await myContract.methods.getRecordsCount().call();
+    var tot = await myContract.methods.getRecordsCount().call();
     tot++;
     uploadImage();
-    let annotazioni = await document.getElementById('annotazioni').value;
-    let fileImmagine = await document.getElementById('immagine');
-    let immagine = fileImmagine.files[0].name;
-    if(immagine == ""){
-      immagine == 'default.jpg';
+    var annotazioni = await document.getElementById('annotazioni').value;
+    var fileImmagine = await document.getElementById('immagine');
+    if(fileImmagine.files[0].name == undefined){
+      var immagine = 'default.jpg';
+    }else{
+      var immagine = fileImmagine.files[0].name;
     }
-    let meteo = await document.getElementById('meteo').value;
-    let data = await document.getElementById('date').value;
+    var meteo = await document.getElementById('meteo').value;
+    var data = await document.getElementById('date').value;
     console.log(tot,data,meteo,annotazioni)
     await myContract.methods.newRecord(tot,data,meteo,annotazioni,immagine).send({from:web3js.eth.defaultAccount,gas: 4500000,gasPrice:'0'}, function(error, transactionHash){
     alert("Attendere il ricaricamento della pagina per vedere le modifiche.\nNon premere nulla prima della fine del caricamento!");
