@@ -44,7 +44,7 @@
     
 
 </head>
-<body onload="visualizzaGiornaleDA()">
+<body onload="getLog()">
     <div id="wrapper">
         <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
@@ -53,7 +53,7 @@
   <div style="color: white;
 padding: 15px 50px 5px 50px;
 float: right;
-font-size: 16px;"> <a href="logEliminazioniDA.html" class="btn btn-danger square-btn-adjust">Visualizza storico eliminazioni</a> <a class="btn btn-danger square-btn-adjust" onclick="logout()">Logout</a> </div>
+font-size: 16px;"> <a href="giornaleDA.html" class="btn btn-danger square-btn-adjust">Visualizza giornale</a> <a class="btn btn-danger square-btn-adjust" onclick="logout()">Logout</a> </div>
         </nav>   
            <!-- /. NAV TOP  -->
                 <nav class="navbar-default navbar-side" role="navigation">
@@ -100,39 +100,13 @@ font-size: 16px;"> <a href="logEliminazioniDA.html" class="btn btn-danger square
                                         <thead>
                                             <tr>
                                                 <th>Data annotazione</th>
-                                                <th>Riserva</th>
+                                                <th>Meteo</th>
+                                                <th>Annotazioni</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             
-                                            <tr class="gradeA">
-                                                <td></td>
-                                                <div class="modal fade" id="1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                                <h4 class="modal-title" id="datamodal">12/10/2018</h4>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <p><b>Meteo</b></p><br><div id="meteomodale">Sole 13,5°C, Precip: Assenti</div>
-                                                                <hr>
-                                                                <p><b>Annotazioni generali e speciali sull'andamento di esecuzione
-                                                                dei lavori, avvenimenti straordinari e tempo impiegato</b></p><br>
-                                                                <div id="annmod"></div>
-                                                                <hr>
-                                                                <a id="imgmodale">immagine.jpg</a><br>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>   
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                               <td>
-                                                </td>
-                                               
-                                            </tr>
+                
                                         </tbody></table></div></div></div>
                     <!--  Modals-->
                     
@@ -160,6 +134,7 @@ font-size: 16px;"> <a href="logEliminazioniDA.html" class="btn btn-danger square
     <!-- DATA TABLE SCRIPTS -->
     <script src="../assets/js/dataTables/jquery.dataTables.js"></script>
     <script src="../assets/js/dataTables/dataTables.bootstrap.js"></script>
+       
     <script>
         var ruoloPage = "DA";
         var ruolo = sessionStorage.getItem("ruolo");
