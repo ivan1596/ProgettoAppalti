@@ -287,3 +287,41 @@ function logout(){
       window.alert(error);
     });
 }
+
+
+
+async function getLog(){
+  myContract.getPastEvents('LogRemLDMRecord', {
+    fromBlock: 0,
+    toBlock: 'latest'
+	}, function(error, events){
+		for (var i=0 in events) {
+      var eventObj = events[i];
+      crea_rigaEliminazioni(eventObj.returnValues.data , eventObj.returnValues.num_ord, eventObj.returnValues.tariffa,eventObj.returnValues.descrizione,eventObj.returnValues.percentuale_completamento)
+			console.log(eventObj.returnValues.data);
+		}
+});}
+
+function crea_rigaEliminazioni(data , num_ord, tariffa,descrizione, percentuale){
+  var tr =$('<tr/>', {
+    id: 'tr',
+});  
+var tariffaComplete = num_ord + '<br>' + tariffa + '<br>' + data;
+var td_tariffa = $('<td/>',{
+    id: 'tar' 
+}).appendTo(tr);
+$(td_tariffa).html(tariffaComplete);
+
+  var td_descrizione = $('<td/>',{
+      id: 'descrizione'
+  }).appendTo(tr);
+  $(td_descrizione).html(descrizione);
+  
+  var td_percentuale = $('<td/>',{
+    id: 'percentuale'
+}).appendTo(tr);
+$(td_percentuale).html(percentuale);
+
+
+  tr.appendTo("#dataTables-example > tbody");
+}

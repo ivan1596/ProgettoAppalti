@@ -284,16 +284,31 @@ function logout(){
 
 
 async function getLog(){
+  myContract.getPastEvents('LogRemGLRecord', {
+    fromBlock: 0,
+    toBlock: 'latest'
+	}, async function(error, events1){
+		for (var i=0 in events1) {
+      
+      var eventObj1 = events1[i];
+      chiave=eventObj1.returnValues.key
+       await confronta(chiave)
+    
+		}
+});
+
+async function confronta(chiave){
   myContract.getPastEvents('LogNewGLRecord', {
     fromBlock: 0,
     toBlock: 'latest'
-	}, function(error, events){
-		for (var i=0 in events) {
-      var eventObj = events[i];
-      crea_rigaEliminazioni(eventObj.returnValues.data , eventObj.returnValues.meteo, eventObj.returnValues.annotazioni,eventObj.returnValues.immagine)
-			console.log(eventObj.returnValues.data);
-		}
+  }, async function(error, events2){
+    for (var y=0 in events2) {
+      var eventObj2 = events2[y];console.log('primachiave:'+chiave+'\nseconda:'+eventObj2.returnValues.key);
+      if(chiave == eventObj2.returnValues.key){crea_rigaEliminazioni(eventObj2.returnValues.data , eventObj2.returnValues.meteo, eventObj2.returnValues.annotazioni)}
+      else console.log('no')
+    }
 });
+}
   
   /*
   myContract.getPastEvents('LogNewGLRecord', {
@@ -323,7 +338,7 @@ for(n=0 ; n<tot ; n++){
 
 }*/
 
-function crea_rigaEliminazioni(data , meteo, annotazione,immagine){
+function crea_rigaEliminazioni(data , meteo, annotazione){
     
   var tr =$('<tr/>', {
       id: 'tr',
