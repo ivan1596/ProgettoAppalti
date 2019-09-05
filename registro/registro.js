@@ -84,6 +84,7 @@ function crea_riga(num_ord, tariffa, data, desc, perc , prezzo_unitario , debito
     let tot = await myContractPagamenti.methods.getRecordsCount().call()
     tot++
     var data = getData()
+   
     await myContractPagamenti.methods.newRecord(tot,data,totDebito*100).send({from:web3js.eth.defaultAccount,gas: 4500000,gasPrice:'0'}, function(error, transactionHash){
         alert("Attendere il ricaricamento della pagina per vedere le modifiche.\nNon premere nulla prima della fine del caricamento!");
     });
@@ -168,7 +169,6 @@ function getData(){
     }
 }*/
 
-<<<<<<< HEAD
 
 
 //FUNZIONI registroRUPpagamenti
@@ -203,7 +203,7 @@ function crea_rigaPagamenti(data,importo){
 
     $('<td/>').html()
     tr.appendTo("#dataTables-example > tbody");
-=======
+}
 //funzione per il logout
 function logout(){
     firebase.auth().signOut().then(function() {
@@ -211,5 +211,4 @@ function logout(){
       }).catch(function(error) {
         window.alert(error);
       });
->>>>>>> fc6666e8ed9b2bad5f6c58cedabcf0c482533885
   }

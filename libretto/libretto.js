@@ -112,7 +112,7 @@ $(td_button).html('Elimina');
       /*console.log(data);
       console.log(desc);
       console.log(riserva);*/
-      crea_riga(num_ord, tariffa, data, desc, perc/100 , riserva, n);  
+      crea_riga(tariffa,data,num_ord, desc, perc/100 , riserva, n);  
       
   });}
    

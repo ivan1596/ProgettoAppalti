@@ -255,7 +255,7 @@ function downoloadImg(nomeImmagine){
   // Prendi il link per il download
   starsRef.getDownloadURL().then(function(url) {
   // Insert url into an <img> tag to "download"
-  $('#imgmodale').html(url);
+  $('#imgmodale').attr('src',url);
   }).catch(function(error) {
 
   switch (error.code) {
