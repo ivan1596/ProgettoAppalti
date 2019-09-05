@@ -11,18 +11,14 @@ var myContract = new web3js.eth.Contract(Abi, address, { gas: 100000000000000000
 
 async function nuovoRecord(){
     let tot = await myContract.methods.getRecordsCount().call();
-    tot++
-    console.log(tot)
+    tot++;
     uploadImage();
     let annotazioni = await document.getElementById('annotazioni').value;
-    //per prendere nome immagine
-    //$("#immagine")[0].files[0] con jquery
-    //var fileInput = document.getElementById('immagine');   
-    //var filename = fileInput.files[0].name;
     let fileImmagine = await document.getElementById('immagine');
     let immagine = fileImmagine.files[0].name;
-    console.log(immagine)
-    console.log(fileImmagine)
+    if(immagine == ""){
+      immagine == 'default.jpg';
+    }
     let meteo = await document.getElementById('meteo').value;
     let data = await document.getElementById('date').value;
     console.log(tot,data,meteo,annotazioni)
@@ -290,5 +286,18 @@ function logout(){
     }).catch(function(error) {
       window.alert(error);
     });
+}
+
+//funzione per controllo form
+function validazioneForm() {
+    var meteo = document.getElementById('meteo').value;
+    var data = document.getElementById('date').value;
+    var annotazioni = document.getElementById('annotazioni').value;
+    if(meteo == "" || data == "" || annotazioni == ""){
+      alert("Inserire tutti i campi")
+    }else{
+      nuovoRecord();
+    }
+
 }
 
