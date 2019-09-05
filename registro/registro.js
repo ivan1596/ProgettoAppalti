@@ -84,6 +84,7 @@ function crea_riga(num_ord, tariffa, data, desc, perc , prezzo_unitario , debito
     let tot = await myContractPagamenti.methods.getRecordsCount().call()
     tot++
     var data = getData()
+   
     await myContractPagamenti.methods.newRecord(tot,data,totDebito*100).send({from:web3js.eth.defaultAccount,gas: 4500000,gasPrice:'0'}, function(error, transactionHash){
         alert("Attendere il ricaricamento della pagina per vedere le modifiche.\nNon premere nulla prima della fine del caricamento!");
     });

@@ -4,7 +4,7 @@ if(utente == null){
     window.location.href = '../login/login.html';
 }
 
-var dataP;
+/*var dataP;
 var importoP;
 var dataM;
 var importoM;
@@ -27,6 +27,7 @@ function logout(){
  
 async function visualizzaPagamenti(){
   let tot = await myContractPagamenti.methods.getRecordsCount().call()
+  console.log(tot)
   for(n=0 ; n<tot ; n++){
     let chiave = await myContract.methods.getRecorKeydAtIndex(n).call()
     await myContractPagamenti.methods.getRecordWithKey(chiave).call((err, result) => { 
@@ -35,6 +36,4 @@ async function visualizzaPagamenti(){
     importoP = result.importo;//  /100
     
     })
-}}
-
-visualizzaPagamenti()
+}}*/
