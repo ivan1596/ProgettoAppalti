@@ -121,13 +121,7 @@ function crea_riga(data , riserva, n){
   }
 
 
-async function getLog(){
-  myContract.getPastEvents('LogNewGLRecord', {
-  fromBlock: 0,
-  toBlock: 'latest'
-}, function(error, events){ console.log(events); })
-}
-getLog()
+
 
 async function visualizzaGiornaleRUP(){
   let tot = await myContract.methods.getRecordsCount().call()
@@ -292,3 +286,65 @@ function logout(){
     });
 }
 
+
+async function getLog(){
+  myContract.getPastEvents('LogNewGLRecord', {
+    fromBlock: 0,
+    toBlock: 'latest'
+	}, function(error, events){
+		for (var i=0 in events) {
+      var eventObj = events[i];
+      crea_rigaEliminazioni(eventObj.returnValues.data , eventObj.returnValues.meteo, eventObj.returnValues.annotazioni,eventObj.returnValues.immagine)
+			console.log(eventObj.returnValues.data);
+		}
+});
+  
+  /*
+  myContract.getPastEvents('LogNewGLRecord', {
+  fromBlock: 0,
+  toBlock: 'latest'
+}, function(error, events){ console.log(events);
+  document.getElementById("log").innerHTML = events[0];})*/
+}
+
+/*
+async function visualizzaGiornaleRUP(){
+  let tot = await myContract.methods.getRecordsCount().call()
+  console.log(tot)
+   
+for(n=0 ; n<tot ; n++){
+  let chiave = await myContract.methods.getRecorKeydAtIndex(n).call()
+  await myContract.methods.getRecordWithKey(chiave).call((err, result) => { 
+  console.log(result);
+  var data = result.data;
+  var meteo = result.meteo;
+  var annotazioni = result.annotazioni;
+  var riserva;
+  if(result.riserva == false){ crea_rigaRUP(data,"NO",n) }//è al contrario
+  else{crea_rigaRUP(data,"SI",n) }
+ 
+});}
+
+}*/
+
+function crea_rigaEliminazioni(data , meteo, annotazione,immagine){
+    
+  var tr =$('<tr/>', {
+      id: 'tr',
+  });
+  var td_data = $('<td/>').appendTo(tr);
+  $(td_data).html(data);
+
+  var td_meteo = $('<td/>',{
+      id: 'meteo'
+  }).appendTo(tr);
+  $(td_meteo).html(meteo);
+  
+  var td_annotazione = $('<td/>',{
+    id: 'annotazione'
+}).appendTo(tr);
+$(td_annotazione).html(annotazione);
+
+
+  tr.appendTo("#dataTables-example > tbody");
+}

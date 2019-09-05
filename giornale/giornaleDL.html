@@ -54,7 +54,7 @@
   <div style="color: white;
 padding: 15px 50px 5px 50px;
 float: right;
-font-size: 16px;"> <a href="#" class="btn btn-danger square-btn-adjust">Vedi storico eliminazioni</a> <a class="btn btn-danger square-btn-adjust" onclick="logout()">Logout</a> </div>
+font-size: 16px;"> <a href="logEliminazioni.html" class="btn btn-danger square-btn-adjust">Vedi storico eliminazioni</a> <a class="btn btn-danger square-btn-adjust" onclick="logout()">Logout</a> </div>
         </nav>   
            <!-- /. NAV TOP  -->
                 <nav class="navbar-default navbar-side" role="navigation">
@@ -198,12 +198,7 @@ font-size: 16px;"> <a href="#" class="btn btn-danger square-btn-adjust">Vedi sto
     <!-- DATA TABLE SCRIPTS -->
     <script src="../assets/js/dataTables/jquery.dataTables.js"></script>
     <script src="../assets/js/dataTables/dataTables.bootstrap.js"></script>
-        <script>
-            $(document).ready(function () {
-                $('#dataTables-example').dataTable();
-            });
-            
-        </script>
+     
     <script>
             var ruoloPage = "DL";
             var ruolo = sessionStorage.getItem("ruolo");
