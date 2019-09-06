@@ -99,6 +99,9 @@ function crea_riga(data , riserva, n){
 
   
    async function visualizzaGiornale(){
+        $("#nascondi1").hide()
+        $("#nascondi2").hide()
+        $("#nascondi3").hide()
         let tot = await myContract.methods.getRecordsCount().call()
         console.log(tot)
          
@@ -121,6 +124,9 @@ function crea_riga(data , riserva, n){
 
 
 async function visualizzaGiornaleRUP(){
+        $("#nascondi1").hide()
+        $("#nascondi2").hide()
+        $("#nascondi3").hide()
   let tot = await myContract.methods.getRecordsCount().call()
   console.log(tot)
    
@@ -187,6 +193,9 @@ async function updateRiserva(n){
 
 
 async function visualizzaGiornaleDA(){
+        $("#nascondi1").hide()
+        $("#nascondi2").hide()
+        $("#nascondi3").hide()
   let tot = await myContract.methods.getRecordsCount().call()
   console.log(tot)
    
