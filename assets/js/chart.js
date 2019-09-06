@@ -7,33 +7,12 @@
   var struct = []
 
   $(function() {
-  
-    async function dataaaa() {
-        let tot = await myContractPagamenti.methods.getRecordsCount().call()
-        var n
-    
-        for(n=0 ; n<tot ; n++){
-          let chiave = await myContract.methods.getRecorKeydAtIndex(n).call()
-          await myContractPagamenti.methods.getRecordWithKey(chiave).call((err, result) => { 
-          importoP = result.importo;//  /[{y:'2006',a:0,b:0}],
-          struct.push({
-            y: 10,
-            a: 10,
-            b: 10
-          });
-        
-          })
-        }return struct
-        }
-        console.log(struct)
-        function pushData() {
-            
-           
-            return  dataaaa();
-          }
-   
-
-
+    var json_data = [{"y": "2016", "a": 10}, {"y": "2017", "a": 8}];
+    var result = [];
+    for(var i in json_data)
+    result.push(json_data[i]);
+    console.log(result);
+    function a(){return result}
 
     
     var mainApp = {
@@ -59,10 +38,10 @@
  ======================================*/
             Morris.Line({
                 element: 'morris-line-chart',
-                data: pushData(),
+                data: a(),
                 xkey: 'y',
-                ykeys: ['a', 'b'],
-                labels: ['Maturato', 'Pagato'],
+                ykeys: ['a'],
+                labels: ['Totale'],
                 hideHover: 'auto',
                 resize: true
             });
