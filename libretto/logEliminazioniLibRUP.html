@@ -3,7 +3,7 @@
 <head>
       <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>EasyAppalto</title>
+    <title>UNIVPM</title>
 	<!-- BOOTSTRAP STYLES-->
     <link href="../assets/css/bootstrap.css" rel="stylesheet" /> 
      <!-- FONTAWESOME STYLES-->
@@ -44,11 +44,10 @@
     </script>
     <script type="text/javascript" src="./../utils/contractsAbi.js"></script>
     <script type="text/javascript" src="./../utils/contractsAdress.js"></script>
-    <script type="text/javascript" src="./../utils/modalLoading.js"></script>
     <script src="libretto.js"></script>
     
 </head>
-<body onload="visualizzaLibrettoRUP()">
+<body onload="getLog()">
     <div id="wrapper">
         <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
@@ -57,7 +56,7 @@
   <div style="color: white;
 padding: 15px 50px 5px 50px;
 float: right;
-font-size: 16px;"> <a href="logEliminazioniLibRUP.html" class="btn btn-danger square-btn-adjust">Visualizza storico eliminazioni</a> <a class="btn btn-danger square-btn-adjust" onclick="logout()">Logout</a> </div>
+font-size: 16px;"> <a href="librettoRUP.html" class="btn btn-danger square-btn-adjust">Visualizza libretto</a> <a class="btn btn-danger square-btn-adjust" onclick="logout()">Logout</a> </div>
         </nav>   
            <!-- /. NAV TOP  -->
                 <nav class="navbar-default navbar-side" role="navigation">
@@ -99,7 +98,7 @@ font-size: 16px;"> <a href="logEliminazioniLibRUP.html" class="btn btn-danger sq
                          <!-- Advanced Tables -->
                          <div class="panel panel-default">
                              <div class="panel-heading">
-                                    <h3>Libretto delle Misure</h3>
+                                    <h3>Storico eliminazioni</h3>
                              </div>
                              <div class="panel-body">
                                  <div class="table-responsive">
@@ -107,10 +106,8 @@ font-size: 16px;"> <a href="logEliminazioniLibRUP.html" class="btn btn-danger sq
                                          <thead>
                                              <tr>
                                                 <th rowspan=2>Num.Ord.<br>Tariffa<br>Data</th>
-                                                <th rowspan=2>Designazione dei Lavori</th>
-                                                <th >Percentuale</th>
-                                                <th rowspan=2>Riserva</th>
-                                                <th >Inserisci riserva</th>
+                                                 <th rowspan=2>Designazione dei Lavori</th>
+                                                 <th >Percentuale</th>
                                              </tr>
                                          </thead>
                                          <tbody>

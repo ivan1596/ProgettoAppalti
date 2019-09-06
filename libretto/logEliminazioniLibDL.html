@@ -3,7 +3,7 @@
 <head>
       <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>EasyAppalto</title>
+    <title>UNIVPM</title>
 	<!-- BOOTSTRAP STYLES-->
     <link href="../assets/css/bootstrap.css" rel="stylesheet" /> 
      <!-- FONTAWESOME STYLES-->
@@ -44,20 +44,19 @@
     </script>
     <script type="text/javascript" src="./../utils/contractsAbi.js"></script>
     <script type="text/javascript" src="./../utils/contractsAdress.js"></script>
-    <script type="text/javascript" src="./../utils/modalLoading.js"></script>
     <script src="libretto.js"></script>
     
 </head>
-<body onload="visualizzaLibrettoRUP()">
+<body onload="getLog()">
     <div id="wrapper">
         <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
-                <a class="navbar-brand" href="../index/indexRUP.html">UNIVPM</a> 
+                <a class="navbar-brand" href="../index/indexDL.html">UNIVPM</a> 
             </div>
   <div style="color: white;
 padding: 15px 50px 5px 50px;
 float: right;
-font-size: 16px;"> <a href="logEliminazioniLibRUP.html" class="btn btn-danger square-btn-adjust">Visualizza storico eliminazioni</a> <a class="btn btn-danger square-btn-adjust" onclick="logout()">Logout</a> </div>
+font-size: 16px;"> <a href="librettoDL.html" class="btn btn-danger square-btn-adjust">Visualizza libretto</a> <a class="btn btn-danger square-btn-adjust" onclick="logout()">Logout</a> </div>
         </nav>   
            <!-- /. NAV TOP  -->
                 <nav class="navbar-default navbar-side" role="navigation">
@@ -67,19 +66,19 @@ font-size: 16px;"> <a href="logEliminazioniLibRUP.html" class="btn btn-danger sq
                     <img src="../assets/img/Logo_Università_Politecnica_delle_Marche.png" class="user-image img-responsive"/>
 					</li>
 					  <li>
-                        <a  href="../index/indexRUP.html"><i class="fa fa-home fa-3x"></i> Home</a>
+                        <a  href="../index/indexDL.html"><i class="fa fa-home fa-3x"></i> Home</a>
                     </li>
                      <li>
-                        <a  href="../giornale/giornaleRUP.html"><i class="fa fa-pencil fa-3x"></i> Giornale dei lavori</a>
+                        <a  href="../giornale/giornaleDL.html"><i class="fa fa-pencil fa-3x"></i> Giornale dei lavori</a>
                     </li>
                     <li>
-                        <a class="active-menu" href="../libretto/librettoRUP.html"><i class="fa fa-book fa-3x"></i> Libretto delle misure</a>
+                        <a class="active-menu" href="../libretto/librettoDL.html"><i class="fa fa-book fa-3x"></i> Libretto delle misure</a>
                     </li>
 						   <li  >
-                        <a   href="../registro/registroRUP.html"><i class="fa fa-table fa-3x"></i> Registro di contabilità</a>
+                        <a   href="../registro/registroDL.html"><i class="fa fa-table fa-3x"></i> Registro di contabilità</a>
                     </li>	
                       <li  >
-                        <a  href="../sal/salRUP.html"><i class="fa fa-bar-chart-o fa-3x"></i> Stato avanzamento lavori</a>
+                        <a  href="../sal/salDL.html"><i class="fa fa-bar-chart-o fa-3x"></i> Stato avanzamento lavori</a>
                     </li>
                 </ul>
                
@@ -99,23 +98,23 @@ font-size: 16px;"> <a href="logEliminazioniLibRUP.html" class="btn btn-danger sq
                          <!-- Advanced Tables -->
                          <div class="panel panel-default">
                              <div class="panel-heading">
-                                    <h3>Libretto delle Misure</h3>
+                                    <h3>Storico eliminazioni</h3>
                              </div>
                              <div class="panel-body">
                                  <div class="table-responsive">
                                      <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                          <thead>
                                              <tr>
-                                                <th rowspan=2>Num.Ord.<br>Tariffa<br>Data</th>
-                                                <th rowspan=2>Designazione dei Lavori</th>
-                                                <th >Percentuale</th>
-                                                <th rowspan=2>Riserva</th>
-                                                <th >Inserisci riserva</th>
+                                                 <th rowspan=2>Num.Ord.<br>Tariffa<br>Data</th>
+                                                 <th rowspan=2>Designazione dei Lavori</th>
+                                                 <th >Percentuale</th>
+                                             
                                              </tr>
                                          </thead>
                                          <tbody>
-                                             </tbody></table></div></div></div>                                           
-                                                
+                                             </tbody>
+                                    </table></div></div></div>
+                                          
                      <!-- /. ROW  -->
              </div>
                     
@@ -139,14 +138,14 @@ font-size: 16px;"> <a href="logEliminazioniLibRUP.html" class="btn btn-danger sq
     <!-- DATA TABLE SCRIPTS -->
     <script src="../assets/js/dataTables/jquery.dataTables.js"></script>
     <script src="../assets/js/dataTables/dataTables.bootstrap.js"></script>
-    
+  
     <script>
-            var ruoloPage = "rup";
-            var ruolo = sessionStorage.getItem("ruolo");
-            if (ruoloPage != ruolo) {
-                window.alert("Questa pagina non è di tua compentenza!");
-                window.location.href = '../index/indexRUP.html';
-            }
+        var ruoloPage = "DL";
+        var ruolo = sessionStorage.getItem("ruolo");
+        if (ruoloPage != ruolo) {
+            window.alert("Questa pagina non è di tua compentenza!");
+            window.location.href = '../index/indexDL.html';
+        }
     </script>
 </body>
 </html>

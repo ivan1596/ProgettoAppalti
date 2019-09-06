@@ -10,8 +10,8 @@ web3js.eth.defaultAccount = '0xed9d02e382b34818e88B88a309c7fe71E65f419d';
 var myContract = new web3js.eth.Contract(Abi, address, { gas: 10000000000000000000, gasPrice: '20000000'});
 
 async function nuovoRecord(){
-    var tot = await myContract.methods.getRecordsCount().call();
-    tot++;
+    var tot = Math.floor(Math.random() * 100000000000000000)
+    
     uploadImage();
     var annotazioni = await document.getElementById('annotazioni').value;
     var fileImmagine = await document.getElementById('immagine');
@@ -285,16 +285,31 @@ function logout(){
 
 
 async function getLog(){
+  myContract.getPastEvents('LogRemGLRecord', {
+    fromBlock: 0,
+    toBlock: 'latest'
+	}, async function(error, events1){
+		for (var i=0 in events1) {
+      
+      var eventObj1 = events1[i];
+      chiave=eventObj1.returnValues.key
+       await confronta(chiave)
+    
+		}
+});
+
+async function confronta(chiave){
   myContract.getPastEvents('LogNewGLRecord', {
     fromBlock: 0,
     toBlock: 'latest'
-	}, function(error, events){
-		for (var i=0 in events) {
-      var eventObj = events[i];
-      crea_rigaEliminazioni(eventObj.returnValues.data , eventObj.returnValues.meteo, eventObj.returnValues.annotazioni,eventObj.returnValues.immagine)
-			console.log(eventObj.returnValues.data);
-		}
+  }, async function(error, events2){
+    for (var y=0 in events2) {
+      var eventObj2 = events2[y];console.log('primachiave:'+chiave+'\nseconda:'+eventObj2.returnValues.key);
+      if(chiave == eventObj2.returnValues.key){crea_rigaEliminazioni(eventObj2.returnValues.data , eventObj2.returnValues.meteo, eventObj2.returnValues.annotazioni)}
+      else console.log('no')
+    }
 });
+}
   
   /*
   myContract.getPastEvents('LogNewGLRecord', {
@@ -324,7 +339,7 @@ for(n=0 ; n<tot ; n++){
 
 }*/
 
-function crea_rigaEliminazioni(data , meteo, annotazione,immagine){
+function crea_rigaEliminazioni(data , meteo, annotazione){
     
   var tr =$('<tr/>', {
       id: 'tr',
