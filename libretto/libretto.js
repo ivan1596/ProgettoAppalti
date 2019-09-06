@@ -321,7 +321,7 @@ $(td_tariffa).html(tariffaComplete);
   var td_percentuale = $('<td/>',{
     id: 'percentuale'
 }).appendTo(tr);
-$(td_percentuale).html(percentuale);
+$(td_percentuale).html(percentuale/100);
 
 
   tr.appendTo("#dataTables-example > tbody");

@@ -1,19 +1,39 @@
-
-  var Abi = misureandregistroABI;
-  var address = misureandregistroAdress;
-  web3js.eth.defaultAccount = '0xed9d02e382b34818e88B88a309c7fe71E65f419d';
-  var myContract = new web3js.eth.Contract(Abi, address, { gas: 10000000000000000000, gasPrice: '20000000'});
-  var myContractPagamenti = new web3js.eth.Contract(pagamentiABI, pagamentiAdress, { gas: 10000000000000000000, gasPrice: '20000000'});
-  var struct = []
+var json_data = []
 
   $(function() {
+   
+    var the_array
+  firebase.firestore().collection('storicopagamenti').get()
+    .then((snapshot) => {
+      snapshot.forEach((doc) => {
+        console.log(doc.data().data, '=>', doc.data().pagamento);
+        var data = doc.data().data
+        var pagamento = doc.data().pagamento
+       
+        the_array = {
+            'data' : data,
+            'pagamento' : pagamento
+        };
+
+
+        json_data.push(new Object(the_array))
+        console.log(json_data)
+      });
+      console.log(json_data)
+     
+      document.getElementById("morris").innerHTML = Morris.Line({
+        element: 'morris-line-chart',
+        data: json_data,
+        xkey: 'data',
+        ykeys: ['pagamento'],
+        labels: ['Totale'],
+        hideHover: 'auto',
+        resize: true
+    });
+    })
+       
+   
     
-    var json_data = [{"y": "2016", "a": 10}, {"y": "2017", "a": 8}];
-    var result = [];
-    for(var i in json_data)
-    result.push(json_data[i]);
-    console.log(result);
-    function a(){return result}
 
     
     var mainApp = {
@@ -32,20 +52,11 @@
                 } else {
                     $('div.sidebar-collapse').removeClass('collapse')
                 }
-            });
+            })
            
             /*====================================
     MORRIS LINE CHART
  ======================================*/
-            Morris.Line({
-                element: 'morris-line-chart',
-                data: a(),
-                xkey: 'y',
-                ykeys: ['a'],
-                labels: ['Totale'],
-                hideHover: 'auto',
-                resize: true
-            });
            
      
         },
