@@ -19,14 +19,15 @@ async function nuovoRecord(){
   let prezzo_unitario = await document.getElementById('prezzo_unitario').value;
   let percentuale = await document.getElementById('percentuale').value;
   await myContract.methods.newRecord(tot,tariffa,data,num_ord,descrizione,prezzo_unitario*100,percentuale*100).send({from:web3js.eth.defaultAccount,gas: 4500000,gasPrice:'0'}, function(error, transactionHash){
-    alert("Attendere il ricaricamento della pagina per vedere le modifiche.\nNon premere nulla prima della fine del caricamento!");
     
   }); 
+  modalLoading.init(true)
   location.reload();
 }
 async function conferma(n){
 var domanda = confirm("Sicuro di voler eliminare?");
 if (domanda === true) {
+  modalLoading.init(true)
   await deleteRecord(n);
 }else{
   
@@ -34,6 +35,7 @@ if (domanda === true) {
 async function confermaRiserva(n){
   var domanda = confirm("Sicuro di voler inserire la riserva?");
   if (domanda === true) {
+    modalLoading.init(true)
     await updateRiserva(n);
   }else{
     
@@ -42,7 +44,7 @@ async function confermaRiserva(n){
 async function deleteRecord(n){
   let chiave = await myContract.methods.getRecorKeydAtIndex(n).call()
   await myContract.methods.remRecord(chiave).send({from:web3js.eth.defaultAccount,gas: 4500000,gasPrice:'0'}, function(error, transactionHash){
-    alert("Attendere il ricaricamento della pagina per vedere le modifiche.\nNon premere nulla prima della fine del caricamento!");
+
     
   }); 
   location.reload();
@@ -253,7 +255,6 @@ async function updateRiserva(n){
   var x = new Boolean("true");
   let chiave = await myContract.methods.getRecorKeydAtIndex(n).call()
   await myContract.methods.updateRiserva(chiave,x).send({from:web3js.eth.defaultAccount,gas: 4500000,gasPrice:'0'}, function(error, transactionHash){
-    alert("Attendere il ricaricamento della pagina per vedere le modifiche.\nNon premere nulla prima della fine del caricamento!");
     
   }); 
   location.reload();

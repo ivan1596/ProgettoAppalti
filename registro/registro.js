@@ -86,7 +86,6 @@ function crea_riga(num_ord, tariffa, data, desc, perc , prezzo_unitario , debito
     var data = getData()
    
     await myContractPagamenti.methods.newRecord(tot,data,totDebito*100).send({from:web3js.eth.defaultAccount,gas: 4500000,gasPrice:'0'}, function(error, transactionHash){
-        alert("Attendere il ricaricamento della pagina per vedere le modifiche.\nNon premere nulla prima della fine del caricamento!");
     });
     await updatePagamento(last)
     location.reload();
@@ -95,8 +94,8 @@ function crea_riga(num_ord, tariffa, data, desc, perc , prezzo_unitario , debito
   async function confermaPagamento(totDebito,last){
     var domanda = confirm("Sicuro di voler pagare € "+totDebito+" ?");
     if (domanda === true) {
-        
-      await pagamento(totDebito,last);
+    modalLoading.init(true)   
+    await pagamento(totDebito,last);
     }else{
     }}
 

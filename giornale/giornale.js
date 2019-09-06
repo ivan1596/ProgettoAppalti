@@ -24,14 +24,16 @@ async function nuovoRecord(){
     var data = await document.getElementById('date').value;
     console.log(tot,data,meteo,annotazioni)
     await myContract.methods.newRecord(tot,data,meteo,annotazioni,immagine).send({from:web3js.eth.defaultAccount,gas: 4500000,gasPrice:'0'}, function(error, transactionHash){
-    alert("Attendere il ricaricamento della pagina per vedere le modifiche.\nNon premere nulla prima della fine del caricamento!");
+   
   }); 
+  modalLoading.init(true)
   location.reload();
 }
 
 async function conferma(n){
     var domanda = confirm("Sicuro di voler eliminare?");
     if (domanda === true) {
+      modalLoading.init(true)
       await deleteRecord(n);
     }else{
       
@@ -39,6 +41,7 @@ async function conferma(n){
     async function confermaRiserva(n){
       var domanda = confirm("Sicuro di voler inserire la riserva?");
       if (domanda === true) {
+        modalLoading.init(true)
         await updateRiserva(n);
       }else{
         
@@ -47,7 +50,6 @@ async function conferma(n){
     async function deleteRecord(n){
       let chiave = await myContract.methods.getRecorKeydAtIndex(n).call()
       await myContract.methods.remRecord(chiave).send({from:web3js.eth.defaultAccount,gas: 4500000,gasPrice:'0'}, function(error, transactionHash){
-        alert("Attendere il ricaricamento della pagina per vedere le modifiche.\nNon premere nulla prima della fine del caricamento!");
         
       }); 
       location.reload();
@@ -162,7 +164,7 @@ function crea_rigaRUP(data , riserva, n){
   var td_id = $('<td/>',{
       id: 'id' 
     }).appendTo(tr);
-  if (riserva == 'NO'){ //da testare
+  if (riserva == 'NO'){
     var td_button = $('<button/>',{
     id: 'button' ,
     class: 'btn btn-danger',
@@ -184,7 +186,6 @@ async function updateRiserva(n){
   var x = new Boolean("true");
   let chiave = await myContract.methods.getRecorKeydAtIndex(n).call()
   await myContract.methods.updateRiserva(chiave,x).send({from:web3js.eth.defaultAccount,gas: 4500000,gasPrice:'0'}, function(error, transactionHash){
-    alert("Attendere il ricaricamento della pagina per vedere le modifiche.\nNon premere nulla prima della fine del caricamento!");
     
   }); 
   location.reload();
