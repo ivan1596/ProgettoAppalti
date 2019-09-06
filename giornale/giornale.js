@@ -26,7 +26,7 @@ async function nuovoRecord(){
     await myContract.methods.newRecord(tot,data,meteo,annotazioni,immagine).send({from:web3js.eth.defaultAccount,gas: 4500000,gasPrice:'0'}, function(error, transactionHash){
    
   }); 
-  modalLoading.init(true)
+  
   location.reload();
 }
 

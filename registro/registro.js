@@ -46,7 +46,7 @@ function crea_riga(num_ord, tariffa, data, desc, perc , prezzo_unitario , debito
     var tr =$('<tr/>', {
         id: 'tr',
     });  
-    var tariffaComplete = num_ord + '<br>' + tariffa + '<br>' + data;
+    var tariffaComplete = + data+'<br>' + tariffa + '<br>' +  num_ord;
     var td_tariffa = $('<td/>',{
         id: 'tar' 
     }).appendTo(tr);
@@ -81,8 +81,8 @@ function crea_riga(num_ord, tariffa, data, desc, perc , prezzo_unitario , debito
   }
 
   async function pagamento(totDebito,last){
-    let tot = await myContractPagamenti.methods.getRecordsCount().call()
-    tot++
+    let tot = Math.floor(Math.random() * 100000000000000000)
+    
     var data = getData()
    
     await myContractPagamenti.methods.newRecord(tot,data,totDebito*100).send({from:web3js.eth.defaultAccount,gas: 4500000,gasPrice:'0'}, function(error, transactionHash){
@@ -175,7 +175,7 @@ function getData(){
 async function visualizzaPagamenti(){
     let tot = await myContractPagamenti.methods.getRecordsCount().call()
   for(n=0 ; n<tot ; n++){
-      let chiave = await myContract.methods.getRecorKeydAtIndex(n).call()
+      let chiave = await myContractPagamenti.methods.getRecorKeydAtIndex(n).call()
       await myContractPagamenti.methods.getRecordWithKey(chiave).call((err, result) => { 
           console.log(result)
       var data = result.data;

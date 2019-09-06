@@ -18,10 +18,11 @@ async function nuovoRecord(){
   let descrizione = await document.getElementById('deslav').value;
   let prezzo_unitario = await document.getElementById('prezzo_unitario').value;
   let percentuale = await document.getElementById('percentuale').value;
+  
   await myContract.methods.newRecord(tot,tariffa,data,num_ord,descrizione,prezzo_unitario*100,percentuale*100).send({from:web3js.eth.defaultAccount,gas: 4500000,gasPrice:'0'}, function(error, transactionHash){
     
   }); 
-  modalLoading.init(true)
+  
   location.reload();
 }
 async function conferma(n){
