@@ -10,8 +10,8 @@ web3js.eth.defaultAccount = '0xed9d02e382b34818e88B88a309c7fe71E65f419d';
 var myContract = new web3js.eth.Contract(Abi, address, { gas: 10000000000000000000, gasPrice: '20000000'});
 
 async function nuovoRecord(){
-    var tot = await myContract.methods.getRecordsCount().call();
-    tot++;
+    var tot = Math.floor(Math.random() * 100000000000000000)
+    
     uploadImage();
     var annotazioni = await document.getElementById('annotazioni').value;
     var fileImmagine = await document.getElementById('immagine');

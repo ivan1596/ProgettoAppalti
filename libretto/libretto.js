@@ -10,8 +10,7 @@ web3js.eth.defaultAccount = '0xed9d02e382b34818e88B88a309c7fe71E65f419d';
 var myContract = new web3js.eth.Contract(Abi, address, { gas: 10000000000000000000, gasPrice: '20000000'});
 
 async function nuovoRecord(){
-  let tot = await myContract.methods.getRecordsCount().call()
-  tot++
+  let tot = Math.floor(Math.random() * 100000000000000000)
   console.log(tot)
   let num_ord = await document.getElementById('numord').value;
   let tariffa = await document.getElementById('tariffa').value;
@@ -324,4 +323,34 @@ $(td_percentuale).html(percentuale);
 
 
   tr.appendTo("#dataTables-example > tbody");
+}
+
+
+
+async function getLog(){
+  myContract.getPastEvents('LogRemLDMRecord', {
+    fromBlock: 0,
+    toBlock: 'latest'
+	}, async function(error, events1){
+		for (var i=0 in events1) {
+      
+      var eventObj1 = events1[i];
+      chiave=eventObj1.returnValues.key
+       await confronta(chiave)
+    
+		}
+});
+
+async function confronta(chiave){
+  myContract.getPastEvents('LogNewLDMRecord', {
+    fromBlock: 0,
+    toBlock: 'latest'
+  }, async function(error, events2){
+    for (var y=0 in events2) {
+      var eventObj2 = events2[y];console.log('primachiave:'+chiave+'\nseconda:'+eventObj2.returnValues.key);
+      if(chiave == eventObj2.returnValues.key){crea_rigaEliminazioni(eventObj2.returnValues.data , eventObj2.returnValues.num_ord, eventObj2.returnValues.tariffa,eventObj2.returnValues.descrizione, eventObj2.returnValues.percentuale_completamento)}
+      else console.log('no')
+    }
+});
+}
 }
