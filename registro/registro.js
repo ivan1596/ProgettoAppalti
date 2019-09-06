@@ -81,18 +81,20 @@ function crea_riga(num_ord, tariffa, data, desc, perc , prezzo_unitario , debito
   }
 
   async function pagamento(totDebito,last){
+    var totale = await getTotale(totDebito)
+    data = getData()
     let tot = Math.floor(Math.random() * 100000000000000000)
-    
-    var data = getData()
-   
     await myContractPagamenti.methods.newRecord(tot,data,totDebito*100).send({from:web3js.eth.defaultAccount,gas: 4500000,gasPrice:'0'}, function(error, transactionHash){
     });
+    
+    aggiungiStorico(data,totale)
     await updatePagamento(last)
     location.reload();
 
   }
   async function confermaPagamento(totDebito,last){
     var domanda = confirm("Sicuro di voler pagare € "+totDebito+" ?");
+   
     if (domanda === true) {
     modalLoading.init(true)   
     await pagamento(totDebito,last);
@@ -213,9 +215,10 @@ function logout(){
   }
 
   //set item su firebase
-function aggiungiStorico(){
-    firebase.firestore().collection("storicopagamenti").doc("LA").set({ //su doc metti il nome del record che vuoi creare
-        data: "2016",
+function aggiungiStorico(data1,pagamento1){
+    firebase.firestore().collection("storicopagamenti").add({ //su doc metti il nome del record che vuoi creare
+        data: data1,
+        pagamento: pagamento1
         
     })
     .then(function() {
@@ -225,3 +228,22 @@ function aggiungiStorico(){
         console.error("Error writing document: ", error);
     });
 }
+
+async function getTotale(totDebito){
+     var a = totDebito
+     var b = await getT()
+    return (a+b)
+ 
+  }
+
+
+  async function getT(){
+      var b=0
+    await firebase.firestore().collection("storicopagamenti").get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            b = b+ Number(doc.data().pagamento)
+            console.log(b)
+        });
+    })
+    return Number(b)
+  }

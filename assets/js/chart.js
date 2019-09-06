@@ -7,6 +7,7 @@
   var struct = []
 
   $(function() {
+    
     var json_data = [{"y": "2016", "a": 10}, {"y": "2017", "a": 8}];
     var result = [];
     for(var i in json_data)
